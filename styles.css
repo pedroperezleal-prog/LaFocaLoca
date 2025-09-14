@@ -1,0 +1,209 @@
+/* Selector personalizado para el picker de tiempo en WebKit */
+#form-container input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(70%) sepia(100%) saturate(500%) hue-rotate(30deg);
+  opacity: 1;
+}
+
+/* Inputs tipo tiempo con padding para ícono */
+#form-container input[type="time"] {
+  position: relative;
+  padding-right: 30px;
+}
+
+/* Estilos para todos los inputs dentro de #form-container */
+#form-container input {
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #001a4d;
+  width: 100%;
+  padding: 7px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 2px solid #00c3ff;
+  background: transparent;
+  box-sizing: border-box;
+}
+
+/* Color fuente para etiquetas y botón */
+#form-container,
+#form-container label,
+#form-container input,
+#form-container button {
+  color: #ffff00;
+}
+
+/* Estilos básicos del body y fondo */
+body {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  color: #333;
+  padding: 20px;
+  background-image: url("foca.jpg?v=1");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  margin: 0;
+
+  /* Adaptación para navegadores sin theme-color */
+  background-color: #d9ff00; /* Color principal para fallback */
+}
+
+/* Título principal */
+h1 {
+  color: #d9ff00;
+  text-align: center;
+  font-size: 2.5em;
+  text-shadow: 2px 2px #f9d71c;
+  margin-top: 20px;
+  margin-bottom: 0.5em;
+
+  /* Para armonizar en navegadores sin soporte theme-color */
+  background-color: #001a4d;
+  padding: 0.2em 0;
+  border-radius: 5px;
+}
+
+/* Contenedor del formulario */
+#form-container {
+  max-width: 600px;
+  margin: 30px 0 20px 80px;
+  background: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #f9d71c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative; /* Para posicionar botón Reset */
+}
+
+/* Estilo para botón Reset (opcional, porque tiene la clase btn-accion) */
+#resetBtn {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  max-width: 100px;
+}
+
+/* Grupo de input + label */
+.input-group {
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 350px;
+}
+
+/* Etiquetas de formulario */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #ff4500;
+}
+
+/* Grupo de botones para Insertar, Excel y PDF */
+.botones-accion {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+/* Estilo común para los botones de acción */
+.btn-accion {
+  background-color: #1cbaf9;
+  color: #2aa31a;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  max-width: 120px;
+  height: 40px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover y focus */
+.btn-accion:hover,
+.btn-accion:focus {
+  background-color: #0066ff;
+  color: white;
+  outline: none;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  color: #ffff00;
+}
+
+/* Celdas y encabezados de tabla */
+th,
+td {
+  border: 1px solid #ff4500;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Animación parpadeo de fila */
+@keyframes parpadeo {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #ff4500; /* rojo vibrante */
+  }
+}
+
+tr.parpadea {
+  animation: parpadeo 1s infinite;
+  color: black;
+  font-weight: bold;
+}
+
+/* Soporte color scheme claro y oscuro */
+html {
+  color-scheme: light dark;
+}
+#form-container {
+  max-width: 600px;
+  margin: 30px 0 20px 80px;
+  background: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #f9d71c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative; /* Para posicionar botón Reset */
+}
+
+#resetBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  max-width: 200px;
+}
+
+/* ... aquí el resto de tus estilos permanecen igual ... */
+footer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  color: #ffff00;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-size: 0.9em;
+  z-index: 1000;
+}
