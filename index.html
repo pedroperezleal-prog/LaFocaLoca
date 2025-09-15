@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+ <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>La Foca Loca - Inicio</title>
+<link rel="apple-touch-icon" href="icon-192.png" />
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#d9ff00" />
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="styles.css" />
+<style>html, body {
+height: 100vh;
+overflow-y: hidden;
+margin: 0;
+padding: 0;
+}
+
+
+.botones-imagen {
+display: flex;
+gap: 30px;
+justify-content: flex-start;
+margin: 100px 0 40px 40px; /* margen izquierdo para desplazar a la izquierda */
+}
+
+.btn-img {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-decoration: none;
+background: #1cbaf9;
+border-radius: 18px;
+box-shadow: 0 4px 16px #001a4d77;
+width: 220px;
+height: 300px;
+padding: 20px;
+transition: background 0.2s;
+border: 3px solid #ffcc00;
+}
+
+
+.btn-img:hover,
+.btn-img:focus {
+background: #0066ff;
+}
+
+
+.btn-img img {
+width: 170px;
+height: 170px;
+object-fit: cover;
+border-radius: 14px;
+margin-bottom: 18px;
+box-shadow: 0 2px 8px #3332;
+}
+
+
+.btn-img span {
+font-size: 1.3em;
+color: #ffff00;
+font-weight: 700;
+text-align: center;
+letter-spacing: 2px;
+margin-top: 3px;
+}
+
+
+/* Título centrado */
+h1 {
+text-align: center;
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+
+/* Campana ubicada debajo y centrada horizontalmente */
+#campana-alerta {
+display: none;
+font-size: 3rem;
+color: #d90000;
+margin: 0 auto 30px auto;
+width: max-content;
+cursor: pointer;
+animation: parpadeo 1s infinite;
+-webkit-user-select: none;
+user-select: none; 
+
+text-align: center;
+}
+
+
+@keyframes parpadeo {
+0%, 100% { opacity: 1; }
+50% { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+<main>
+<h1>Bienvenido a La Foca Loca</h1>
+
+
+<div id="campana-alerta" aria-live="assertive" aria-atomic="true" title="Alerta de tiempo agotado">
+<img src="campana.png" alt="Campana de alerta" />
+</div>
+
+
+
+<div class="botones-imagen">
+<a href="libre.html" class="btn-img">
+<img src="libre1.jpg" alt="Ir a Juego Libre" />
+<span>Ir a Juego Libre</span>
+</a>
+<a href="cumple.html" class="btn-img">
+<img src="arti.jpg" alt="Ir Cumpleaños" />
+<span>Ir a Cumpleaños</span>
+</a>
+</div>
+</main>
+
+
+
+
+<script src="app.js" defer></script>
+<script>
+if ("serviceWorker" in navigator) {
+window.addEventListener("load", () => {
+navigator.serviceWorker.register("./sw.js");
+ });
+}
+</script>
+</body>
+</html>

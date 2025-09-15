@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>La Foca Loca - Cumpleaños</title>
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#d9ff00" />
+    <link rel="icon" href="icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      #color {
+        font-family: 'NF-Le petit cochon', cursive, sans-serif !important;
+        background: transparent;
+        border: 2px solid #00c3ff;
+        border-radius: 5px;
+        color: yellow;
+        padding: 7px;
+        font-size: 1em;
+        width: 100%;
+        box-sizing: border-box;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+      }
+      #color option[value="AZUL"] {
+        color: blue;
+        background: transparent;
+      }
+      #color option[value="VERDE"] {
+        color: green;
+        background: transparent;
+      }
+      #color option[value="ROJO"] {
+        color: red;
+        background: transparent;
+      }
+      #color option[value=""] {
+        color: yellow;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <ul>
+          <li><a href="index.html">Volver a inicio</a></li>
+          <li><a href="libre.html">Ir a Juego Libre</a></li>
+        </ul>
+      </nav>
+
+      <section id="form-container" aria-label="Formulario cumpleaños">
+        <!-- Botones y formulario adaptado, usa IDs y clases del CSS -->
+        <button
+          id="resetBtn"
+          class="btn-accion"
+          type="button"
+          aria-label="Resetear tabla"
+          title="Resetear tabla"
+        >
+          Reset tabla
+        </button>
+
+        
+
+        <div class="input-group">
+          <label for="id">id:</label>
+          <input type="text" id="id" name="id" autocomplete="off" required />
+        </div>
+
+        <div class="input-group">
+          <label for="color">color:</label>
+          <select id="color" name="color" required>
+            <option value="" disabled selected>Elige un color</option>
+            <option value="AZUL">AZUL</option>
+            <option value="VERDE">VERDE</option>
+            <option value="ROJO">ROJO</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="nombre">nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="telefono">teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
+        </div>
+
+        <div class="input-group">
+          <label for="merienda">Merienda:</label>
+          <input type="text" id="merienda" name="merienda" />
+        </div>
+
+        <div class="input-group">
+          <label for="observaciones">OBSERVACIONES:</label>
+          <input
+            type="text"
+            id="observaciones"
+            name="observaciones"
+            min="0"
+            step="0.01"
+          />
+        </div>
+
+        <div class="botones-accion">
+          <button
+            id="insertarBtn"
+            class="btn-accion"
+            type="button"
+            aria-label="Insertar datos en la tabla"
+            title="Insertar datos en la tabla"
+          >
+            Insertar
+          </button>
+          <button
+            id="exportExcel"
+            class="btn-accion"
+            type="button"
+            aria-label="Exportar tabla a Excel"
+            title="Exportar tabla a Excel"
+          >
+            Excel
+          </button>
+          <button
+            id="exportPdf"
+            class="btn-accion"
+            type="button"
+            aria-label="Exportar tabla a PDF"
+            title="Exportar tabla a PDF"
+          >
+            PDF
+          </button>
+        </div>
+      </section>
+
+      <section>
+        <table id="tabla-cumple" aria-label="Listado de registros" role="grid">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">COLOR</th>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">TELÉFONO</th>
+              <th scope="col">MERIENDA</th>
+              <th scope="col">OBSERVACIONES</th>
+              
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+ 
+  </body>
+</html>

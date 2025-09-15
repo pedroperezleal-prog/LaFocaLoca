@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>La Foca Loca - Formulario y Registros</title>
+    <link rel="apple-touch-icon" href="icon-192.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#d9ff00" />
+    <link rel="icon" href="icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Librerías jsPDF y jsPDF-autotable -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"
+      defer
+    ></script>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <ul>
+          <li><a href="index.html">Volver a inicio</a></li>
+          <li><a href="cumple.html">Ir a Cumpleaños</a></li>
+        </ul>
+      </nav>
+
+      <section id="form-container" aria-label="Formulario de registro">
+        <!-- Botón Reset arriba a la derecha sin estilos inline -->
+        <button
+          id="resetBtn"
+          class="btn-accion"
+          type="button"
+          aria-label="Resetear tabla"
+          title="Resetear tabla"
+        >
+          Reset tabla
+        </button>
+
+        <button
+          id="nuevoBtn"
+          class="btn-accion"
+          type="button"
+          aria-label="Poner hora actual en hora de entrada"
+          title="Poner hora actual en hora de entrada"
+        >
+          Nueva
+        </button>
+        <div class="input-group">
+          <label for="id">id:</label>
+          <input type="text" id="id" name="id" autocomplete="off" required />
+        </div>
+
+        <div class="input-group">
+          <label for="color">color:</label>
+          <input type="text" id="color" name="color" autocomplete="off" />
+        </div>
+
+        <div class="input-group">
+          <label for="nombre">nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            autocomplete="off"
+            required
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="telefono">teléfono:</label>
+          <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
+        </div>
+
+        <div class="input-group">
+          <label for="horaentrada">hora entrada:</label>
+          <input type="time" id="horaentrada" name="horaentrada" />
+        </div>
+
+        <div class="input-group">
+          <label for="tiempoJuego">tiempo de juego (minutos):</label>
+          <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="horasalida">hora salida:</label>
+          <input type="time" id="horasalida" name="horasalida" readonly />
+        </div>
+
+        <div class="input-group">
+          <label for="abonado">abonado (€):</label>
+          <input
+            type="number"
+            id="abonado"
+            name="abonado"
+            min="0"
+            step="0.01"
+          />
+        </div>
+
+        <div class="botones-accion">
+          <button
+            id="insertarBtn"
+            class="btn-accion"
+            type="button"
+            aria-label="Insertar datos en la tabla"
+            title="Insertar datos en la tabla"
+          >
+            Insertar
+          </button>
+          <button
+            id="exportExcel"
+            class="btn-accion"
+            type="button"
+            aria-label="Exportar tabla a Excel"
+            title="Exportar tabla a Excel"
+          >
+            Excel
+          </button>
+          <button
+            id="exportPdf"
+            class="btn-accion"
+            type="button"
+            aria-label="Exportar tabla a PDF"
+            title="Exportar tabla a PDF"
+          >
+            PDF
+          </button>
+        </div>
+      </section>
+      <section>
+        <table id="tabla" aria-label="Listado de registros" role="grid">
+          <thead>
+            <tr>
+              <th scope="col">id</th>
+              <th scope="col">color</th>
+              <th scope="col">nombre</th>
+              <th scope="col">teléfono</th>
+              <th scope="col">horaentrada</th>
+              <th scope="col">tiempo juego</th>
+              <th scope="col">hora salida</th>
+              <th scope="col">restante</th>
+              <th scope="col">pagado</th>
+              <th scope="col">avisado </th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+    <footer>
+      <p>Desarrollado por PericoPL &copy; 2025</p>
+    </footer>
+    <script src="app.js" defer></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker.register("./sw.js");
+        });
+      }
+    </script>
+  </body>
+</html>

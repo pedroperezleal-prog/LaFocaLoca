@@ -1,0 +1,21 @@
+{
+  "name": "La Foca Loca",
+  "short_name": "FocaLoca",
+  "start_url": "./main.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#d9ff00",
+  "theme_color": "#d9ff00",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
