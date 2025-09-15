@@ -1,17 +1,20 @@
 /* Selector personalizado para el picker de tiempo en WebKit */
-#form-container input[type="time"]::-webkit-calendar-picker-indicator {
+#form-container input[type="time"]::-webkit-calendar-picker-indicator,
+#form-container-secundaria input[type="time"]::-webkit-calendar-picker-indicator {
   filter: invert(70%) sepia(100%) saturate(500%) hue-rotate(30deg);
   opacity: 1;
 }
 
 /* Inputs tipo tiempo con padding para ícono */
-#form-container input[type="time"] {
+#form-container input[type="time"],
+#form-container-secundaria input[type="time"] {
   position: relative;
   padding-right: 30px;
 }
 
-/* Estilos para todos los inputs dentro de #form-container */
-#form-container input {
+/* Estilos para todos los inputs dentro de #form-container y #form-container-secundaria */
+#form-container input,
+#form-container-secundaria input {
   text-transform: uppercase;
   font-weight: bold;
   color: #001a4d;
@@ -28,13 +31,17 @@
 #form-container,
 #form-container label,
 #form-container input,
-#form-container button {
+#form-container button,
+#form-container-secundaria,
+#form-container-secundaria label,
+#form-container-secundaria input,
+#form-container-secundaria button {
   color: #ffff00;
 }
 
 /* Estilos básicos del body y fondo */
 body {
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: "Petit Cochon", cursive, sans-serif;
   color: #333;
   padding: 20px;
   background-image: url("foca.jpg?v=1");
@@ -64,7 +71,8 @@ h1 {
 }
 
 /* Contenedor del formulario */
-#form-container {
+#form-container,
+#form-container-secundaria {
   max-width: 600px;
   margin: 30px 0 20px 80px;
   background: transparent;
@@ -79,7 +87,8 @@ h1 {
 }
 
 /* Estilo para botón Reset (opcional, porque tiene la clase btn-accion) */
-#resetBtn {
+#resetBtn,
+#resetBtn-secundaria {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -151,59 +160,4 @@ td {
   font-size: 0.9em;
 }
 
-/* Animación parpadeo de fila */
-@keyframes parpadeo {
-  0%,
-  100% {
-    background-color: transparent;
-  }
-  50% {
-    background-color: #ff4500; /* rojo vibrante */
-  }
-}
-
-tr.parpadea {
-  animation: parpadeo 1s infinite;
-  color: black;
-  font-weight: bold;
-}
-
-/* Soporte color scheme claro y oscuro */
-html {
-  color-scheme: light dark;
-}
-#form-container {
-  max-width: 600px;
-  margin: 30px 0 20px 80px;
-  background: transparent;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 16px #f9d71c;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  position: relative; /* Para posicionar botón Reset */
-}
-
-#resetBtn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  max-width: 200px;
-}
-
-/* ... aquí el resto de tus estilos permanecen igual ... */
-footer {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  color: #ffff00;
-  font-weight: bold;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-family: "Comic Sans MS", cursive, sans-serif;
-  font-size: 0.9em;
-  z-index: 1000;
-}
+/* Animación

@@ -40,10 +40,12 @@ self.addEventListener('fetch', event => {
     caches.match(event.request)
       .then(response => response || fetch(event.request))
       .catch(() => {
-        // Opcional: fallback si falla fetch y no hay cache (ej: página offline)
+        // Fallback si falla fetch y no hay cache (ej: página offline)
         if (event.request.mode === 'navigate') {
           return caches.match('./index.html');
         }
+        // Para otros recursos, podrías retornar un fallback o simplemente undefined
+        return;
       })
   );
 });
