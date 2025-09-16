@@ -66,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tr.classList.remove('parpadea');
         return;
       }
-      const checkboxAvisado = tr.querySelector(
-        'td:last-child input[type="checkbox"]'
-      );
+      const checkboxAvisado = tr.querySelector('td:last-child input[type="checkbox"]');
       const avisado = checkboxAvisado && checkboxAvisado.checked;
       const ahora = new Date();
       const [hS, mS] = horasalida.split(':').map(Number);
@@ -78,8 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (diffMs < 0) diffMs = 0;
       const diffMin = Math.floor(diffMs / 60000);
       const diffSeg = Math.floor((diffMs % 60000) / 1000);
-      tdRestante.textContent =
-        diffMs > 0 ? `${diffMin}m ${diffSeg}s` : '0m 0s';
+      tdRestante.textContent = diffMs > 0 ? `${diffMin}m ${diffSeg}s` : '0m 0s';
       if (diffMs === 0 && !avisado) {
         tr.classList.add('parpadea');
       } else {
@@ -92,8 +89,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const filas = [];
     document.querySelectorAll('#tabla tbody tr').forEach((tr) => {
       const datos = Array.from(tr.querySelectorAll('td')).map((td) => {
-        if (td.querySelector('input[type="checkbox"]')) {
-          return td.querySelector('input[type="checkbox"]').checked;
+        const checkbox = td.querySelector('input[type="checkbox"]');
+        if (checkbox) {
+          return checkbox.checked;
         }
         return td.textContent;
       });
@@ -153,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Validación básica
     const id = idInput.value.trim();
     const nombre = nombreInput.value.trim();
-  
+
     // El resto de inputs opcionales
     const color = colorInput.value.trim();
     const telefono = telefonoInput.value.trim();
@@ -205,12 +203,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   exportExcelBtn?.addEventListener('click', () => {
     const table = document.getElementById('tabla');
-
     // Crear fila con fecha
     const thead = table.querySelector('thead');
     const fechaTr = document.createElement('tr');
     const fechaTd = document.createElement('td');
-
     // Poner la fecha y hacer que ocupe todas las columnas
     fechaTd.colSpan = thead.querySelectorAll('th').length;
     const ahora = new Date();
@@ -218,12 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fechaTd.textContent = `Fecha: ${fechaStr}`;
     fechaTd.style.fontWeight = 'bold';
     fechaTd.style.textAlign = 'center';
-
     fechaTr.appendChild(fechaTd);
-
     // Insertar la fila fecha antes del thead
     thead.parentNode.insertBefore(fechaTr, thead);
-
     // Exportar tabla a Excel
     const html = encodeURIComponent(table.outerHTML);
     const url = 'data:application/vnd.ms-excel;charset=utf-8,' + html;
@@ -232,7 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
     a.download = 'foca_loca_registros.xls';
     a.click();
     a.remove();
-
     // Quitar la fila fecha para dejar la tabla igual que antes
     fechaTr.remove();
   });
@@ -247,10 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const margin = 15;
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString();
-
     doc.text('Listado de Registros - La Foca Loca', margin, margin);
     doc.text(`Fecha: ${fechaStr}`, margin, margin + 8);
-
     doc.autoTable({
       html: '#tabla',
       startY: margin + 20,
@@ -259,22 +249,22 @@ document.addEventListener('DOMContentLoaded', () => {
         overflow: 'linebreak',
         lineWidth: 0.3,
         lineColor: [0, 0, 0],
-        fontSize: 10
+        fontSize: 10,
       },
       headStyles: {
         fillColor: [230, 230, 250],
         textColor: [0, 0, 0],
         lineWidth: 0.7,
         lineColor: [0, 0, 0],
-        fontStyle: 'bold'
+        fontStyle: 'bold',
       },
       bodyStyles: {
         fillColor: [255, 255, 255],
         lineWidth: 0.3,
-        lineColor: [0, 0, 0]
+        lineColor: [0, 0, 0],
       },
       alternateRowStyles: {
-        fillColor: [245, 245, 245]
+        fillColor: [245, 245, 245],
       },
       pageBreak: 'auto',
     });

@@ -13,6 +13,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js" defer></script>
   <style>
+    /* Animación parpadeo rojo para filas con tiempo restante 0 */
+    @keyframes parpadeo-rojo {
+      0%, 100% { background-color: transparent; }
+      50% { background-color: #ff4d4d; }
+    }
+    .parpadea {
+      animation: parpadeo-rojo 1s infinite;
+    }
     /* Botones arriba a la derecha fuera del contenedor */
     .top-right-buttons {
       position: fixed;
@@ -24,7 +32,7 @@
     }
     .top-right-buttons .btn-accion {
       background-color: #1cbaf9;
-      color: #2aa31a;
+      color: #ffff00;
       font-weight: 300;
       cursor: pointer;
       border: none;
@@ -40,6 +48,15 @@
       background-color: #0066ff;
       color: white;
       outline: none;
+    }
+    /* Contenedor para los botones reset y nuevo juntos a la derecha */
+    .botones-reset-nuevo {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 15px;
+      align-items: center;
+      width: 100%;
     }
     /* Contenedor formulario */
     #form-container {
@@ -83,7 +100,7 @@
     }
   </style>
 </head>
-<body>
+<body class="libre">
   <main>
     <div class="top-right-buttons">
       <button
@@ -105,8 +122,27 @@
         Cumpleaños
       </button>
     </div>
-
     <section id="form-container" aria-label="Formulario de registro">
+      <button
+        id="nuevoBtn"
+        class="btn-accion"
+        type="button"
+        aria-label="Poner hora actual en hora de entrada"
+        title="Poner hora actual en hora de entrada"
+      >
+        Nuevo
+      </button>
+      <div class="botones-reset-nuevo">
+        <button
+          id="resetBtn"
+          class="btn-accion"
+          type="button"
+          aria-label="Resetear tabla"
+          title="Resetear tabla"
+        >
+          Reset tabla
+        </button>
+      </div>
       <div class="input-group">
         <label for="id">ID:</label>
         <input type="number" id="id" name="id" autocomplete="off" required />
@@ -117,7 +153,7 @@
       </div>
       <div class="input-group">
         <label for="nombre">NOMBRE:</label>
-        <input type="text" id="nombre" name="nombre" autocomplete="off" required/>
+        <input type="text" id="nombre" name="nombre" autocomplete="off" required />
       </div>
       <div class="input-group">
         <label for="telefono">TELÉFONO:</label>
@@ -132,7 +168,7 @@
         <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
       </div>
       <div class="input-group">
-        <label for="horasalida">HORA SALIDA:</label>
+        <label for="horasalida">HORA DE SALIDA:</label>
         <input type="time" id="horasalida" name="horasalida" readonly />
       </div>
       <div class="input-group">
@@ -169,7 +205,6 @@
         </button>
       </div>
     </section>
-
     <section>
       <table id="tabla" aria-label="Listado de registros" role="grid">
         <thead>
@@ -190,7 +225,6 @@
       </table>
     </section>
   </main>
-
   <script src="app.js" defer></script>
 </body>
 </html>

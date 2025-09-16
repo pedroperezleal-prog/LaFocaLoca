@@ -61,16 +61,17 @@ html, body, * {
 }
 
 /* Estilos básicos del body y fondo */
-body {
+body.index
+ {  
   font-family: "PetitCochon", cursive, sans-serif;
   color: #333;
-  padding: 20px;
+  padding: 0;
   background-image: url("foca.jpg?v=1");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   min-height: 100vh;
-  background-color: #d9ff00; /* fallback */
+  background-color: #40c4e6; /* fallback */
 }
 
 /* Título principal */
@@ -139,7 +140,7 @@ label {
 /* Estilo común para los botones de acción */
 .btn-accion {
   background-color: #1cbaf9; /* Para otros botones mantiene este azul */
-  color: #2aa31a;
+  color: #a3a31a;
   font-weight: 300;
   cursor: pointer;
   border: none;
@@ -152,7 +153,7 @@ label {
   white-space: nowrap; /* Evita que el texto se parta */
 }
 
-/* Hover y focus */
+/* Hover y focus   */
 .btn-accion:hover,
 .btn-accion:focus {
   background-color: #0066ff;
@@ -187,7 +188,7 @@ body.no-scroll {
 
 /* Imágenes dentro de botones */
 nav button img {
-  width: 460px;               /* Tamaño más grande */
+  width: 300px;               /* Tamaño más grande */
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -216,7 +217,7 @@ footer {
   bottom: 10px;
   right: 10px;
   font-size: 0.9em;
-  color: #333;
+  color: #aded16;
   user-select: none;
   background: transparent;
   padding: 5px 10px;
@@ -227,7 +228,7 @@ footer {
 /* Botones amarillos con texto oscuro para .top-right-buttons */
 .top-right-buttons .btn-accion {
   background-color: #ffea00;
-  color: #333300;
+  color: #1c75d5;
   font-weight: 300;
   cursor: pointer;
   border: none;
@@ -247,5 +248,37 @@ footer {
   outline: none;
 }
 
-/* Nav container incomplete removed */
-/* Removed duplicate nav related styles or invalid display:; */
+body.index {
+  background-image: url("foca.jpg?v=1");
+  background-size: cover; /* tamaño habitual para index */
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+}
+
+body.libre, body.cumple {
+  background-image: url("foca1.jpg?v=1");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center  top
+
+  
+}
+/* Contenedor para botones reset y nuevo juntos a la derecha */
+.botones-reset-nuevo {
+  display: flex;
+  justify-content: flex-end; /* Alinea a la derecha */
+  gap: 10px;                 /* Espacio entre botones */
+  margin-bottom: 15px;
+  align-items: center;       /* Alinea verticalmente */
+  width: 100%;               /* Para ocupar todo el ancho del form */
+}
+/* Animación parpadeo rojo para fila con clase .parpadea */
+@keyframes parpadeo-rojo {
+  0%, 100% { background-color: transparent; }
+  50% { background-color: #ff4d4d; }
+}
+
+.parpadea {
+  animation: parpadeo-rojo 1s infinite;
+}

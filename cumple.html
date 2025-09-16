@@ -1,159 +1,178 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>La Foca Loca - Cumpleaños</title>
-    <link rel="apple-touch-icon" href="icon-192.png" />
-    <link rel="manifest" href="manifest.json" />
-    <meta name="theme-color" content="#d9ff00" />
-    <link rel="icon" href="icon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main>
-      <nav>
-        <ul>
-          <li><a href="index.html">Volver a inicio</a></li>
-          <li><a href="libre.html">Volver a Juego Libre</a></li>
-        </ul>
-      </nav>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La Foca Loca - Cumpleaños</title>
+  <link rel="apple-touch-icon" href="icon-192.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#d9ff00" />
+  <link rel="icon" href="icon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="styles.css" />
 
-      <section id="form-container" aria-label="Formulario cumpleaños">
-        <!-- Botones y formulario adaptado, usa IDs y clases del CSS -->
+  <style>
+    /* Botones en la esquina superior derecha (igual que en libre.html) */
+    .top-right-buttons {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+    .top-right-buttons .btn-accion {
+      background-color: #1cbaf9;
+      color: #2aa31a;
+      font-weight: 300;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 20px;
+      font-size: 1.2em;
+      min-height: 40px;
+      white-space: nowrap;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .top-right-buttons .btn-accion:hover,
+    .top-right-buttons .btn-accion:focus {
+      background-color: #0066ff;
+      color: white;
+      outline: none;
+    }
+  </style>
+</head>
+
+<body class="cumple"></body>
+  <main>
+    <div class="top-right-buttons">
+      <button
+        type="button"
+        class="btn-accion"
+        onclick="location.href='index.html'"
+        aria-label="Ir a Inicio"
+        title="Ir a Inicio"
+      >
+        Inicio
+      </button>
+      <button
+        type="button"
+        class="btn-accion"
+        onclick="location.href='libre.html'"
+        aria-label="Ir a Juego Libre"
+        title="Ir a Juego Libre"
+      >
+        Juego Libre
+      </button>
+    </div>
+
+    <section id="form-container" aria-label="Formulario cumpleaños">
+      <!-- Formulario adaptado (igual estructura y clases para botones de acción) -->
+      <button
+        id="resetBtn"
+        class="btn-accion"
+        type="button"
+        aria-label="Resetear tabla"
+        title="Resetear tabla"
+      >
+        Reset tabla
+      </button>
+
+      <button
+        id="nuevoBtn"
+        class="btn-accion"
+        type="button"
+        aria-label="Poner hora actual en hora de entrada"
+        title="Poner hora actual en hora de entrada"
+      > 
+        Nueva
+      </button>
+
+      <div class="input-group">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" autocomplete="off" required />
+      </div>
+
+      <div class="input-group">
+        <label for="color">COLOR:</label>
+        <input type="text" id="color" name="color" autocomplete="off" />
+      </div>
+
+      <div class="input-group">
+        <label for="nombre">NOMBRE:</label>
+        <input type="text" id="nombre" name="nombre" autocomplete="off" required />
+      </div>
+
+      <div class="input-group">
+        <label for="telefono">TELÉFONO:</label>
+        <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
+      </div>
+
+      <div class="input-group">
+        <label for="horaentrada">HORA ENTRADA:</label>
+        <input type="time" id="horaentrada" name="horaentrada" />
+      </div>
+
+      <div class="input-group">
+        <label for="tiempoJuego">TIEMPO DE JUEGO (minutos):</label>
+        <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
+      </div>
+
+      <div class="input-group">
+        <label for="horasalida">HORA DE SALIDA:</label>
+        <input type="time" id="horasalida" name="horasalida" readonly />
+      </div>
+
+      <div class="input-group">
+        <label for="abonado">ABONADO (€):</label>
+        <input type="number" id="abonado" name="abonado" min="0" step="0.01" />
+      </div>
+
+      <div class="botones-accion">
         <button
-          id="resetBtn"
+          id="insertarBtn"
           class="btn-accion"
           type="button"
-          aria-label="Resetear tabla"
-          title="Resetear tabla"
+          aria-label="Insertar datos en la tabla"
+          title="Insertar datos en la tabla"
         >
-          Reset tabla
+          Insertar
         </button>
-
         <button
-          id="nuevoBtn"
+          id="exportExcel"
           class="btn-accion"
           type="button"
-          aria-label="Poner hora actual en hora de entrada"
-          title="Poner hora actual en hora de entrada"
+          aria-label="Exportar tabla a Excel"
+          title="Exportar tabla a Excel"
         >
-          Nueva/o
+          Excel
         </button>
+        <button
+          id="exportPdf"
+          class="btn-accion"
+          type="button"
+          aria-label="Exportar tabla a PDF"
+          title="Exportar tabla a PDF"
+        >
+          PDF
+        </button>
+      </div>
+    </section>
 
-        <div class="input-group">
-          <label for="id">ID:</label>
-          <input type="text" id="id" name="id" autocomplete="off" required />
-        </div>
+    <!-- Tabla u otros contenidos aquí -->
 
-        <div class="input-group">
-          <label for="color">COLOR:</label>
-          <input type="text" id="color" name="color" autocomplete="off" />
-        </div>
+  </main>
 
-        <div class="input-group">
-          <label for="nombre">NOMBRE:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            autocomplete="off"
-            required
-          />
-        </div>
+  <footer>
+    <p>Desarrollado por PericoPL &copy; 2025</p>
+  </footer>
 
-        <div class="input-group">
-          <label for="telefono">TELÉFONO:</label>
-          <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
-        </div>
-
-        <div class="input-group">
-          <label for="horaentrada">HORA ENTRADA:</label>
-          <input type="time" id="horaentrada" name="horaentrada" />
-        </div>
-
-        <div class="input-group">
-          <label for="tiempoJuego">TIEMPO DE JUEGO (minutos):</label>
-          <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
-        </div>
-
-        <div class="input-group">
-          <label for="horasalida">HORA DE SALIDA:</label>
-          <input type="time" id="horasalida" name="horasalida" readonly />
-        </div>
-
-        <div class="input-group">
-          <label for="abonado">ABONADO (€):</label>
-          <input
-            type="number"
-            id="abonado"
-            name="abonado"
-            min="0"
-            step="0.01"
-          />
-        </div>
-
-        <div class="botones-accion">
-          <button
-            id="insertarBtn"
-            class="btn-accion"
-            type="button"
-            aria-label="Insertar datos en la tabla"
-            title="Insertar datos en la tabla"
-          >
-            Insertar
-          </button>
-          <button
-            id="exportExcel"
-            class="btn-accion"
-            type="button"
-            aria-label="Exportar tabla a Excel"
-            title="Exportar tabla a Excel"
-          >
-            Excel
-          </button>
-          <button
-            id="exportPdf"
-            class="btn-accion"
-            type="button"
-            aria-label="Exportar tabla a PDF"
-            title="Exportar tabla a PDF"
-          >
-            PDF
-          </button>
-        </div>
-      </section>
-
-      <section>
-        <table id="tabla" aria-label="Listado de registros" role="grid">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">COLOR</th>
-              <th scope="col">NOMBRE</th>
-              <th scope="col">TELÉFONO</th>
-              <th scope="col">HORA ENTRADA</th>
-              <th scope="col">TIEMPO JUEGO</th>
-              <th scope="col">HORA SALIDA</th>
-              <th scope="col">RESTANTE</th>
-              <th scope="col">ABONADO</th>
-              <th scope="col">AVISADO</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
-    </main>
-    <footer>
-      <p>Desarrollado por PericoPL &copy; 2025</p>
-    </footer>
-    <script src="app-cumple.js" defer></script>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-          navigator.serviceWorker.register('./sw.js');
-        });
-      }
-    </script>
-  </body>
+  <script src="app-cumple.js" defer></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./sw.js');
+      });
+    }
+  </script>
+</body>
 </html>
