@@ -9,9 +9,8 @@
   <meta name="theme-color" content="#d9ff00" />
   <link rel="icon" href="icon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="styles.css" />
-
   <style>
-    /* Botones en la esquina superior derecha (igual que en libre.html) */
+    /* Botones en la esquina superior derecha */
     .top-right-buttons {
       position: fixed;
       top: 20px;
@@ -22,7 +21,7 @@
     }
     .top-right-buttons .btn-accion {
       background-color: #1cbaf9;
-      color: #2aa31a;
+      color: #ddf414;
       font-weight: 300;
       cursor: pointer;
       border: none;
@@ -42,7 +41,7 @@
   </style>
 </head>
 
-<body class="cumple"></body>
+<body class="cumple">
   <main>
     <div class="top-right-buttons">
       <button
@@ -66,26 +65,7 @@
     </div>
 
     <section id="form-container" aria-label="Formulario cumpleaños">
-      <!-- Formulario adaptado (igual estructura y clases para botones de acción) -->
-      <button
-        id="resetBtn"
-        class="btn-accion"
-        type="button"
-        aria-label="Resetear tabla"
-        title="Resetear tabla"
-      >
-        Reset tabla
-      </button>
-
-      <button
-        id="nuevoBtn"
-        class="btn-accion"
-        type="button"
-        aria-label="Poner hora actual en hora de entrada"
-        title="Poner hora actual en hora de entrada"
-      > 
-        Nueva
-      </button>
+      
 
       <div class="input-group">
         <label for="id">ID:</label>
@@ -94,7 +74,11 @@
 
       <div class="input-group">
         <label for="color">COLOR:</label>
-        <input type="text" id="color" name="color" autocomplete="off" />
+        <select id="color" name="color" autocomplete="off">
+          <option value="azul" style="color: blue;">Azul</option>
+          <option value="verde" style="color: green;">Verde</option>
+          <option value="rojo" style="color: red;">Rojo</option>
+        </select>
       </div>
 
       <div class="input-group">
@@ -108,23 +92,20 @@
       </div>
 
       <div class="input-group">
-        <label for="horaentrada">HORA ENTRADA:</label>
-        <input type="time" id="horaentrada" name="horaentrada" />
+        <label for="merienda">MERIENDA:</label>
+        <select id="merienda" name="merienda">
+          <option value="bocata_chorizo">Bocata Chorizo</option>
+          <option value="bocata_nocilla">Bocata Nocilla</option>
+          <option value="bocata_york">Bocata York</option>
+          <option value="galletas">Galletas</option>
+          <option value="nuggets">Nuggets</option>
+          <option value="pizza">Pizza</option>
+        </select>
       </div>
 
       <div class="input-group">
-        <label for="tiempoJuego">TIEMPO DE JUEGO (minutos):</label>
-        <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
-      </div>
-
-      <div class="input-group">
-        <label for="horasalida">HORA DE SALIDA:</label>
-        <input type="time" id="horasalida" name="horasalida" readonly />
-      </div>
-
-      <div class="input-group">
-        <label for="abonado">ABONADO (€):</label>
-        <input type="number" id="abonado" name="abonado" min="0" step="0.01" />
+        <label for="observaciones">OBSERVACIONES:</label>
+        <input type="text" id="observaciones" name="observaciones" />
       </div>
 
       <div class="botones-accion">
@@ -134,37 +115,12 @@
           type="button"
           aria-label="Insertar datos en la tabla"
           title="Insertar datos en la tabla"
-        >
-          Insertar
+        >Insertar
         </button>
-        <button
-          id="exportExcel"
-          class="btn-accion"
-          type="button"
-          aria-label="Exportar tabla a Excel"
-          title="Exportar tabla a Excel"
-        >
-          Excel
-        </button>
-        <button
-          id="exportPdf"
-          class="btn-accion"
-          type="button"
-          aria-label="Exportar tabla a PDF"
-          title="Exportar tabla a PDF"
-        >
-          PDF
-        </button>
-      </div>
+      
     </section>
 
-    <!-- Tabla u otros contenidos aquí -->
-
   </main>
-
-  <footer>
-    <p>Desarrollado por PericoPL &copy; 2025</p>
-  </footer>
 
   <script src="app-cumple.js" defer></script>
   <script>
