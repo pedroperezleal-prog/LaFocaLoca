@@ -14,8 +14,10 @@ html, body, * {
   -webkit-font-smoothing: antialiased;
   font-smooth: always;
   text-shadow: none;         /* sin sombra */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
 
 /* Selector personalizado para el picker de tiempo en WebKit */
 #form-container input[type="time"]::-webkit-calendar-picker-indicator,
@@ -68,24 +70,19 @@ body {
   background-repeat: no-repeat;
   background-position: center center;
   min-height: 100vh;
-  margin: 0;
-
-  /* Adaptación para navegadores sin theme-color */
-  background-color: #d9ff00; /* Color principal para fallback */
+  background-color: #d9ff00; /* fallback */
 }
 
 /* Título principal */
 h1 {
   color: #d9ff00;
   text-align: center;
-  font-size: 2.7em;       /* un poco más grande */
-  font-weight: 300;       /* más fino */
+  font-size: 2.7em;        
+  font-weight: 300;        
   text-shadow: none;
   margin-top: 20px;
   margin-bottom: 0.5em;
-
-  /* Para armonizar en navegadores sin soporte theme-color */
-  background-color: #001a4d;
+  background-color: #063fb1;
   padding: 0.2em 0;
   border-radius: 5px;
 }
@@ -102,17 +99,16 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   position: relative; /* Para posicionar botón Reset */
 }
 
-/* Estilo para botón Reset (opcional, porque tiene la clase btn-accion) */
+/* Estilo para botón Reset */
 #resetBtn,
 #resetBtn-secundaria {
   position: absolute;
-  top: 10px;
+  top: 20px;
   right: 20px;
-  max-width: 100px;
+  max-width: 200px;
 }
 
 /* Grupo de input + label */
@@ -142,17 +138,18 @@ label {
 
 /* Estilo común para los botones de acción */
 .btn-accion {
-  background-color: #1cbaf9;
+  background-color: #1cbaf9; /* Para otros botones mantiene este azul */
   color: #2aa31a;
   font-weight: 300;
   cursor: pointer;
   border: none;
   border-radius: 6px;
-  padding: 10px 20px;
+  padding: 14px 28px;
   font-size: 1.2em;
-  max-width: 120px;
-  height: 40px;
+  height: auto;        /* Altura adaptativa */
+  min-height: 40px;    /* Mantener altura mínima */
   transition: background-color 0.3s ease, color 0.3s ease;
+  white-space: nowrap; /* Evita que el texto se parta */
 }
 
 /* Hover y focus */
@@ -180,36 +177,17 @@ td {
   font-size: 0.9em;
 }
 
+/* Body no scroll (cuando aplica clase) */
 body.no-scroll {
   overflow: hidden;
   margin: 0;
   padding: 0;
   height: 100%;
 }
-nav button img {
-  width: 220px;            /* Tamaño fijo igual para ambas imágenes */
-  height: auto;            /* Mantener proporción */
-  border-radius: 12px;     /* Esquinas redondeadas opcional */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra suave */
-  transition: all 0.3s ease;
-  display: block;          /* Quita espacio inferior */
-  cursor: pointer;
-}
 
-nav button img:hover {
-  box-shadow: 0 8px 16px rgba(0,0,0,0.5); /* Sombra más intensa */
-  transform: scale(1.05);                  /* Zoom ligero */
-}
-nav {
-  display: ;
-  gap: 60px;                /* espacio entre imágenes */
-  justify-content: flex-start; /* alineadas a la izquierda para luego mover con margen */
-  align-items: center;
- 
-}
-
+/* Imágenes dentro de botones */
 nav button img {
-  width: 500px;             /* tamaño más grande */
+  width: 460px;               /* Tamaño más grande */
   height: auto;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -221,6 +199,18 @@ nav button img:hover {
   box-shadow: 0 8px 18px rgba(0,0,0,0.5);
   transform: scale(1.05);
 }
+
+nav button:first-child img {
+  margin-left: 60px;
+  margin-top: 90px;
+}
+
+nav button:last-child img {
+  margin-left: 60px;
+  margin-top: 70px;
+}
+
+/* Footer fijo abajo derecha */
 footer {
   position: fixed;
   bottom: 10px;
@@ -228,19 +218,34 @@ footer {
   font-size: 0.9em;
   color: #333;
   user-select: none;
-  background: transparent; /* opcional, si quieres fondo */
-  padding: 5px 10px;       /* pequeño padding para mejor visual */
-  border-radius: 4px;      /* opcional para suavizar bordes */
-  z-index: 1000;           /* para que quede encima de otros elementos */
-}
-nav button:first-child img {
-  margin-left: 60px;  /* mueve la primera imagen a la derecha */
-  margin-top: 90px;   /* mueve la primera imagen hacia abajo */
-  
+  background: transparent;
+  padding: 5px 10px;
+  border-radius: 4px;
+  z-index: 1000;
 }
 
-nav button:last-child img {
-  margin-left: 60px;  /* mueve la segunda imagen un poco a la derecha */
-  margin-top: 70px;   /* mueve la segunda imagen más hacia abajo */
-  
+/* Botones amarillos con texto oscuro para .top-right-buttons */
+.top-right-buttons .btn-accion {
+  background-color: #ffea00;
+  color: #333300;
+  font-weight: 300;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  height: auto;
+  min-height: 40px;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.top-right-buttons .btn-accion:hover,
+.top-right-buttons .btn-accion:focus {
+  background-color: #e6d500;
+  color: #111100;
+  outline: none;
+}
+
+/* Nav container incomplete removed */
+/* Removed duplicate nav related styles or invalid display:; */
