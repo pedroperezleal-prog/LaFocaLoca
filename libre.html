@@ -50,17 +50,17 @@
           Nueva
         </button>
         <div class="input-group">
-          <label for="id">id:</label>
-          <input type="text" id="id" name="id" autocomplete="off" required />
+          <label for="id">ID:</label>
+          <input type="number" id="id" name="id" autocomplete="off" required />
         </div>
 
         <div class="input-group">
-          <label for="color">color:</label>
+          <label for="color">COLOR:</label>
           <input type="text" id="color" name="color" autocomplete="off" />
         </div>
 
         <div class="input-group">
-          <label for="nombre">nombre:</label>
+          <label for="nombre">NOMBRE:</label>
           <input
             type="text"
             id="nombre"
@@ -71,27 +71,27 @@
         </div>
 
         <div class="input-group">
-          <label for="telefono">teléfono:</label>
+          <label for="telefono">TELÉFONO:</label>
           <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
         </div>
 
         <div class="input-group">
-          <label for="horaentrada">hora entrada:</label>
+          <label for="horaentrada">HORA ENTRADA:</label>
           <input type="time" id="horaentrada" name="horaentrada" />
         </div>
 
         <div class="input-group">
-          <label for="tiempoJuego">tiempo de juego (minutos):</label>
+          <label for="tiempoJuego">TIEMPO DE JUEGO (minutos):</label>
           <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
         </div>
 
         <div class="input-group">
-          <label for="horasalida">hora salida:</label>
+          <label for="horasalida">HORA SALIDA:</label>
           <input type="time" id="horasalida" name="horasalida" readonly />
         </div>
 
         <div class="input-group">
-          <label for="abonado">abonado (€):</label>
+          <label for="abonado">ABONADO (€):</label>
           <input
             type="number"
             id="abonado"
@@ -135,32 +135,24 @@
         <table id="tabla" aria-label="Listado de registros" role="grid">
           <thead>
             <tr>
-              <th scope="col">id</th>
-              <th scope="col">color</th>
-              <th scope="col">nombre</th>
-              <th scope="col">teléfono</th>
-              <th scope="col">horaentrada</th>
-              <th scope="col">tiempo juego</th>
-              <th scope="col">hora salida</th>
-              <th scope="col">restante</th>
-              <th scope="col">pagado</th>
-              <th scope="col">avisado </th>
+              <th scope="col">ID</th>
+              <th scope="col">COLOR</th>
+              <th scope="col">NOMBRE</th>
+              <th scope="col">TELÉFONO</th>
+              <th scope="col">HORA ENTRADA</th>
+              <th scope="col">TIEMPO JUEGO</th>
+              <th scope="col">HORA SALIDA</th>
+              <th scope="col">RESTANTE</th>
+              <th scope="col">PAGADO</th>
+              <th scope="col">AVISADO</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </section>
     </main>
-    <footer>
-      <p>Desarrollado por PericoPL &copy; 2025</p>
-    </footer>
+    
     <script src="app.js" defer></script>
-    <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker.register("./sw.js");
-        });
-      }
-    </script>
+   
   </body>
 </html>

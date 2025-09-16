@@ -1,7 +1,7 @@
 {
   "name": "La Foca Loca",
   "short_name": "FocaLoca",
-  "start_url": "./main.html",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#d9ff00",
