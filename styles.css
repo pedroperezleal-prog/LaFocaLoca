@@ -2,13 +2,18 @@
 @font-face {
   font-family: 'PetitCochon';
   src: url('./fonts/PetitCochon.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: 300;
   font-style: normal;
 }
-/* 2. Aplica la fuente a todos los elementos */
-html,body, * {
+
+/* 2. Aplica la fuente a todos los elementos con tamaño y peso más adecuados */
+html, body, * {
   font-family: 'PetitCochon', cursive, sans-serif;
-  /* ...el resto de tus estilos aquí... */
+  font-weight: 300;          /* más fino */
+  font-size: 1.1em;          /* un poco más grande */
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
+  text-shadow: none;         /* sin sombra */
 }
 
 
@@ -30,11 +35,11 @@ html,body, * {
 #form-container input,
 #form-container-secundaria input {
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 300;
   color: #001a4d;
   width: 100%;
   padding: 7px;
-  font-size: 1em;
+  font-size: 1.1em;
   border-radius: 5px;
   border: 2px solid #00c3ff;
   background: transparent;
@@ -55,7 +60,7 @@ html,body, * {
 
 /* Estilos básicos del body y fondo */
 body {
-  font-family: "Petit Cochon", cursive, sans-serif;
+  font-family: "PetitCochon", cursive, sans-serif;
   color: #333;
   padding: 20px;
   background-image: url("foca.jpg?v=1");
@@ -73,8 +78,9 @@ body {
 h1 {
   color: #d9ff00;
   text-align: center;
-  font-size: 2.5em;
-  text-shadow: 2px 2px #f9d71c;
+  font-size: 2.7em;       /* un poco más grande */
+  font-weight: 300;       /* más fino */
+  text-shadow: none;
   margin-top: 20px;
   margin-bottom: 0.5em;
 
@@ -119,7 +125,7 @@ h1 {
 /* Etiquetas de formulario */
 label {
   display: block;
-  font-weight: bold;
+  font-weight: 300;
   margin-bottom: 4px;
   color: #ff4500;
 }
@@ -138,7 +144,7 @@ label {
 .btn-accion {
   background-color: #1cbaf9;
   color: #2aa31a;
-  font-weight: bold;
+  font-weight: 300;
   cursor: pointer;
   border: none;
   border-radius: 6px;
@@ -174,4 +180,9 @@ td {
   font-size: 0.9em;
 }
 
-/* Animación
+body.no-scroll {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
