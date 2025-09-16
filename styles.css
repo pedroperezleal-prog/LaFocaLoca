@@ -186,3 +186,51 @@ body.no-scroll {
   padding: 0;
   height: 100%;
 }
+nav button img {
+  width: 220px;            /* Tamaño fijo igual para ambas imágenes */
+  height: auto;            /* Mantener proporción */
+  border-radius: 12px;     /* Esquinas redondeadas opcional */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); /* Sombra suave */
+  transition: all 0.3s ease;
+  display: block;          /* Quita espacio inferior */
+  cursor: pointer;
+}
+
+nav button img:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5); /* Sombra más intensa */
+  transform: scale(1.05);                  /* Zoom ligero */
+}
+nav {
+  display: ;
+  gap: 60px;                /* espacio entre imágenes */
+  justify-content: flex-start; /* alineadas a la izquierda para luego mover con margen */
+  align-items: center;
+  margin-top: 80px;         /* mueve todo el nav un poco hacia abajo */
+  padding-left: 90px;       /* mueve todo el nav a la derecha */
+}
+
+nav button img {
+  width: 500px;             /* tamaño más grande */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+nav button img:hover {
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5);
+  transform: scale(1.05);
+}
+footer {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-size: 0.9em;
+  color: #333;
+  user-select: none;
+  background: transparent; /* opcional, si quieres fondo */
+  padding: 5px 10px;       /* pequeño padding para mejor visual */
+  border-radius: 4px;      /* opcional para suavizar bordes */
+  z-index: 1000;           /* para que quede encima de otros elementos */
+}
