@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Carga de fuente personalizada Petit Cochon */
 @font-face {
 font-family: 'NF-Le petit cochon';
@@ -19,18 +20,31 @@ text-transform: uppercase !important;
 #form-container-secundaria input[type="time"]::-webkit-calendar-picker-indicator {
 filter: invert(70%) sepia(100%) saturate(500%) hue-rotate(30deg);
 opacity: 1;
+=======
+/* Selector personalizado para el picker de tiempo en WebKit */
+#form-container input[type="time"]::-webkit-calendar-picker-indicator,
+#form-container-secundaria input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(70%) sepia(100%) saturate(500%) hue-rotate(30deg);
+  opacity: 1;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Inputs tipo tiempo con padding para ícono */
 #form-container input[type="time"],
 #form-container-secundaria input[type="time"] {
+<<<<<<< HEAD
 position: relative;
 padding-right: 30px;
+=======
+  position: relative;
+  padding-right: 30px;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Estilos para todos los inputs dentro de #form-container y #form-container-secundaria */
 #form-container input,
 #form-container-secundaria input {
+<<<<<<< HEAD
 font-weight: 300; /* peso de fuente más fino */
 color: #001a4d;
 width: 100%;
@@ -40,6 +54,18 @@ border-radius: 5px;
 border: 2px solid #00c3ff;
 background: transparent;
 box-sizing: border-box;
+=======
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #001a4d;
+  width: 100%;
+  padding: 7px;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 2px solid #00c3ff;
+  background: transparent;
+  box-sizing: border-box;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Color fuente para etiquetas y botón */
@@ -51,11 +77,16 @@ box-sizing: border-box;
 #form-container-secundaria label,
 #form-container-secundaria input,
 #form-container-secundaria button {
+<<<<<<< HEAD
 color: #ffff00;
+=======
+  color: #ffff00;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Estilos básicos del body y fondo */
 body {
+<<<<<<< HEAD
 font-family: 'NF-Le petit cochon', cursive, sans-serif;
 color: #333;
 padding: 20px;
@@ -68,10 +99,25 @@ margin: 0;
 
 /* Adaptación para navegadores sin theme-color */
 background-color: #d9ff00; /* Color principal para fallback */
+=======
+  font-family: "Petit Cochon", cursive, sans-serif;
+  color: #333;
+  padding: 20px;
+  background-image: url("foca.jpg?v=1");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 100vh;
+  margin: 0;
+
+  /* Adaptación para navegadores sin theme-color */
+  background-color: #d9ff00; /* Color principal para fallback */
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Título principal */
 h1 {
+<<<<<<< HEAD
 color: #d9ff00;
 text-align: center;
 font-size: 2.5em;
@@ -84,11 +130,25 @@ background-color: #001a4d;
 padding: 0.2em 0;
 border-radius: 5px;
 font-weight: 300; /* peso de fuente más fino para título */
+=======
+  color: #d9ff00;
+  text-align: center;
+  font-size: 2.5em;
+  text-shadow: 2px 2px #f9d71c;
+  margin-top: 20px;
+  margin-bottom: 0.5em;
+
+  /* Para armonizar en navegadores sin soporte theme-color */
+  background-color: #001a4d;
+  padding: 0.2em 0;
+  border-radius: 5px;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Contenedor del formulario */
 #form-container,
 #form-container-secundaria {
+<<<<<<< HEAD
 max-width: 600px;
 margin: 30px 0 20px 40px;
 background: transparent;
@@ -99,11 +159,25 @@ display: flex;
 flex-direction: column;
 align-items: center;
 position: relative; /* Para posicionar botón Reset */
+=======
+  max-width: 600px;
+  margin: 30px 0 20px 80px;
+  background: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #f9d71c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative; /* Para posicionar botón Reset */
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Estilo para botón Reset (opcional, porque tiene la clase btn-accion) */
 #resetBtn,
 #resetBtn-secundaria {
+<<<<<<< HEAD
 position: absolute;
 top: 10px;
 right: 20px;
@@ -117,35 +191,64 @@ white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 box-sizing: border-box;
+=======
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  max-width: 100px;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Grupo de input + label */
 .input-group {
+<<<<<<< HEAD
 margin-bottom: 12px;
 width: 100%;
 max-width: 350px;
+=======
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 350px;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Etiquetas de formulario */
 label {
+<<<<<<< HEAD
 display: block;
 font-weight: 300; /* peso de fuente más fino */
 margin-bottom: 4px;
 color: #ff4500;
+=======
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #ff4500;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Grupo de botones para Insertar, Excel y PDF */
 .botones-accion {
+<<<<<<< HEAD
 display: flex;
 gap: 10px;
 justify-content: flex-start;
 margin-bottom: 15px;
 margin-top: 10px;
 flex-wrap: wrap;
+=======
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Estilo común para los botones de acción */
 .btn-accion {
+<<<<<<< HEAD
 background-color: #1cbaf9;
 color: #2aa31a;
 font-weight: 300; /* peso de fuente más fino */
@@ -159,28 +262,55 @@ height: 40px;
 transition: background-color 0.3s ease, color 0.3s ease;
 font-family: 'NF-Le petit cochon', cursive, sans-serif !important;
 text-transform: uppercase !important;
+=======
+  background-color: #1cbaf9;
+  color: #2aa31a;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  max-width: 120px;
+  height: 40px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Hover y focus */
 .btn-accion:hover,
 .btn-accion:focus {
+<<<<<<< HEAD
 background-color: #0066ff;
 color: white;
 outline: none;
+=======
+  background-color: #0066ff;
+  color: white;
+  outline: none;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Tabla */
 table {
+<<<<<<< HEAD
 width: 100%;
 border-collapse: collapse;
 margin-top: 10px;
 color: #ffff00;
 text-transform: uppercase !important;
+=======
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  color: #ffff00;
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }
 
 /* Celdas y encabezados de tabla */
 th,
 td {
+<<<<<<< HEAD
 border: 1px solid #ff4500;
 padding: 8px;
 text-align: center;
@@ -269,3 +399,12 @@ text-align: center;
 .campana-parpadea {
 animation: parpadeoRojo 1s infinite;
 }
+=======
+  border: 1px solid #ff4500;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+/* Animación
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054

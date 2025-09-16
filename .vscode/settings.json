@@ -1,5 +1,6 @@
 {
   "editor.fontSize": 16,
+<<<<<<< HEAD
   "editor.fontFamily": "Consolas, 'Courier New', monospace, Petit Cochon",
   "cSpell.words": [
     "ABONADO",
@@ -98,4 +99,7 @@
     "ubicada",
     "Volver"
   ]
+=======
+  "editor.fontFamily": "Consolas, 'Courier New', monospace, Petit Cochon"
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
 }

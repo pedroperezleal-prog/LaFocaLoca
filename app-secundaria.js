@@ -45,6 +45,7 @@ nuevoBtn.addEventListener('click', () => {
     minute: '2-digit'
   });
 });
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
   const tablas = [
     document.querySelector('#tabla'),           // Tabla en libre.html
@@ -161,3 +162,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cargarDatosLocalStorage();
 });
+=======
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054

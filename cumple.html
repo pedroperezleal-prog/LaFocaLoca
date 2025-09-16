@@ -9,6 +9,7 @@
     <meta name="theme-color" content="#d9ff00" />
     <link rel="icon" href="icon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="styles.css" />
+<<<<<<< HEAD
     <style>
       #color {
         font-family: 'NF-Le petit cochon', cursive, sans-serif !important;
@@ -42,13 +43,19 @@
         background: transparent;
       }
     </style>
+=======
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
   </head>
   <body>
     <main>
       <nav>
         <ul>
+<<<<<<< HEAD
           <li><a href="index.html">Volver a inicio</a></li>
           <li><a href="libre.html">Ir a Juego Libre</a></li>
+=======
+          <li><a href="main.html">Volver a inicio</a></li>
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
         </ul>
       </nav>
 
@@ -64,14 +71,30 @@
           Reset tabla
         </button>
 
+<<<<<<< HEAD
         
 
         <div class="input-group">
           <label for="id">id:</label>
+=======
+        <button
+          id="nuevoBtn"
+          class="btn-accion"
+          type="button"
+          aria-label="Poner hora actual en hora de entrada"
+          title="Poner hora actual en hora de entrada"
+        >
+          Nueva/o
+        </button>
+
+        <div class="input-group">
+          <label for="id">ID:</label>
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
           <input type="text" id="id" name="id" autocomplete="off" required />
         </div>
 
         <div class="input-group">
+<<<<<<< HEAD
           <label for="color">color:</label>
           <select id="color" name="color" required>
             <option value="" disabled selected>Elige un color</option>
@@ -83,6 +106,14 @@
 
         <div class="input-group">
           <label for="nombre">nombre:</label>
+=======
+          <label for="color">COLOR:</label>
+          <input type="text" id="color" name="color" autocomplete="off" />
+        </div>
+
+        <div class="input-group">
+          <label for="nombre">NOMBRE:</label>
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
           <input
             type="text"
             id="nombre"
@@ -93,11 +124,16 @@
         </div>
 
         <div class="input-group">
+<<<<<<< HEAD
           <label for="telefono">teléfono:</label>
+=======
+          <label for="telefono">TELÉFONO:</label>
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
           <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
         </div>
 
         <div class="input-group">
+<<<<<<< HEAD
           <label for="merienda">Merienda:</label>
           <input type="text" id="merienda" name="merienda" />
         </div>
@@ -108,6 +144,28 @@
             type="text"
             id="observaciones"
             name="observaciones"
+=======
+          <label for="horaentrada">HORA ENTRADA:</label>
+          <input type="time" id="horaentrada" name="horaentrada" />
+        </div>
+
+        <div class="input-group">
+          <label for="tiempoJuego">TIEMPO DE JUEGO (minutos):</label>
+          <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
+        </div>
+
+        <div class="input-group">
+          <label for="horasalida">HORA DE SALIDA:</label>
+          <input type="time" id="horasalida" name="horasalida" readonly />
+        </div>
+
+        <div class="input-group">
+          <label for="abonado">ABONADO (€):</label>
+          <input
+            type="number"
+            id="abonado"
+            name="abonado"
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
             min="0"
             step="0.01"
           />
@@ -145,22 +203,49 @@
       </section>
 
       <section>
+<<<<<<< HEAD
         <table id="tabla-cumple" aria-label="Listado de registros" role="grid">
+=======
+        <table id="tabla" aria-label="Listado de registros" role="grid">
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
           <thead>
             <tr>
               <th scope="col">ID</th>
               <th scope="col">COLOR</th>
               <th scope="col">NOMBRE</th>
               <th scope="col">TELÉFONO</th>
+<<<<<<< HEAD
               <th scope="col">MERIENDA</th>
               <th scope="col">OBSERVACIONES</th>
               
+=======
+              <th scope="col">HORA ENTRADA</th>
+              <th scope="col">TIEMPO JUEGO</th>
+              <th scope="col">HORA SALIDA</th>
+              <th scope="col">RESTANTE</th>
+              <th scope="col">ABONADO</th>
+              <th scope="col">AVISADO</th>
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </section>
     </main>
+<<<<<<< HEAD
  
+=======
+    <footer>
+      <p>Desarrollado por PericoPL &copy; 2025</p>
+    </footer>
+    <script src="app-cumple.js" defer></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('./sw.js');
+        });
+      }
+    </script>
+>>>>>>> d74b96de26a95f0a3505751bf0f17b6ef27b1054
   </body>
 </html>
