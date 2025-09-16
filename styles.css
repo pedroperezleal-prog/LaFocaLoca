@@ -205,8 +205,7 @@ nav {
   gap: 60px;                /* espacio entre imágenes */
   justify-content: flex-start; /* alineadas a la izquierda para luego mover con margen */
   align-items: center;
-  margin-top: 80px;         /* mueve todo el nav un poco hacia abajo */
-  padding-left: 90px;       /* mueve todo el nav a la derecha */
+ 
 }
 
 nav button img {
@@ -233,4 +232,15 @@ footer {
   padding: 5px 10px;       /* pequeño padding para mejor visual */
   border-radius: 4px;      /* opcional para suavizar bordes */
   z-index: 1000;           /* para que quede encima de otros elementos */
+}
+nav button:first-child img {
+  margin-left: 60px;  /* mueve la primera imagen a la derecha */
+  margin-top: 90px;   /* mueve la primera imagen hacia abajo */
+  
+}
+
+nav button:last-child img {
+  margin-left: 60px;  /* mueve la segunda imagen un poco a la derecha */
+  margin-top: 70px;   /* mueve la segunda imagen más hacia abajo */
+  
 }
