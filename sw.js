@@ -2,15 +2,27 @@ const CACHE_NAME = 'foca-loca-cache-v1';
 const urlsToCache = [
   './',
   './index.html',
+  './libre.html',
+  './styles-libre.css',
+  './cumple.html',
+  './styles-cumple.css',
   './styles.css',
-  './app.js',
+  './fonts/PetitCochon.ttf',
+  './app-libre.js',
+  './app-cumple.js',
   './foca.jpg',
+  './foca1.jpg',
   './icon-192.png',
   './icon.ico',
   './manifest.json',
   './icon-512.png',
   './screenshot1.png',
   './screenshot2.png',
+  './arti.jpg',
+  './arti.png',
+  './arti.jpeg',
+  './campana.jpg',
+  './campana.png',
 ];
 
 // Instalación y precacheo

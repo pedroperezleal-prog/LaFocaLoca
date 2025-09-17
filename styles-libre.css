@@ -1,0 +1,154 @@
+/* Fuente personalizada */
+@font-face {
+  font-family: "PetitCochon";
+  src: url("./fonts/PetitCochon.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+/* Estilos generales */
+html,
+body,
+* {
+  font-family: "PetitCochon", cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1.1em;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
+  text-shadow: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Animación parpadeo rojo para filas con tiempo restante 0 */
+@keyframes parpadeo-rojo {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #ff4d4d;
+  }
+}
+.parpadea {
+  animation: parpadeo-rojo 1s infinite;
+}
+/* Botones arriba a la derecha fuera del contenedor */
+.top-right-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+.top-right-buttons .btn-accion {
+  background-color: #1cbaf9;
+  color: #ffff00;
+  font-weight: 300;
+  cursor: pointer;
+  border: none;
+  display: inline-block;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  min-height: 40px;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.top-right-buttons .btn-accion:hover,
+.top-right-buttons .btn-accion:focus {
+  background-color: #0066ff;
+  color: white;
+  outline: none;
+}
+/* Contenedor para los botones reset y nuevo juntos a la derecha */
+.botones-reset-nuevo {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+  width: 100%;
+}
+/* Contenedor formulario */
+#form-container {
+  max-width: 600px;
+  margin: 80px 0 20px 80px;
+  background: transparent;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #f9d71c;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+/* Input groups */
+.input-group {
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 350px;
+}
+label {
+  display: block;
+  font-weight: 300;
+  margin-bottom: 4px;
+  color: #ff4500;
+}
+input[type="number"],
+input[type="text"],
+input[type="tel"],
+input[type="time"] {
+  text-transform: uppercase;
+  font-weight: 300;
+  color: #001a4d;
+  width: 100%;
+  padding: 7px;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: 2px solid #00c3ff;
+  background: transparent;
+  box-sizing: border-box;
+}
+select#color {
+  background: transparent !important;
+  color: #001a4d !important;
+  font-weight: 300;
+  font-size: 1.1em;
+  border: 2px solid #00c3ff;
+  border-radius: 5px;
+  padding: 7px;
+  box-sizing: border-box;
+  width: 100%;
+  text-transform: uppercase;
+}
+select#color option {
+  background: transparent !important;
+  color: #001a4d !important;
+}
+#color option[value="Azul"] {
+  color: blue;
+}
+#color option[value="Verde"] {
+  color: green;
+}
+#color option[value="Rojo"] {
+  color: red;
+}
+/* Botones de acción */
+.btn-accion {
+  display: inline-block;
+  padding: 10px 20px;
+  white-space: nowrap;
+  width: auto;
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: "PetitCochon", cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: 2px solid #00c3ff;
+  background: transparent;
+  color: #001a4d;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}

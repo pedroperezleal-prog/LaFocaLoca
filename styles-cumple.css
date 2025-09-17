@@ -1,0 +1,96 @@
+/* Fuente personalizada */
+@font-face {
+  font-family: 'PetitCochon';
+  src: url('./fonts/PetitCochon.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Estilos generales */
+html, body, * {
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1.1em;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
+  text-shadow: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Inputs y selects - fondo transparente y texto estilizado */
+#form-container input,
+select#color,
+select#merienda {
+  background: transparent !important;
+  color: #001a4d !important;
+  font-weight: 300;
+  font-size: 1.1em;
+  border: 2px solid #00c3ff;
+  border-radius: 5px;
+  padding: 7px;
+  width: 100%;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+
+/* Opciones transparentes para selects */
+select#color option,
+select#merienda option {
+  background: transparent !important;
+  color: #001a4d !important;
+}
+
+/* Colores específicos para opciones del select color */
+#color option[value="azul"] { color: blue; }
+#color option[value="verde"] { color: green; }
+#color option[value="rojo"] { color: red; }
+
+/* Botones en la esquina superior derecha */
+.top-right-buttons {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 1000;
+}
+.top-right-buttons .btn-accion {
+  background-color: #1cbaf9;
+  color: #ddf414;
+  font-weight: 300;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 1.2em;
+  min-height: 40px;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.top-right-buttons .btn-accion:hover,
+.top-right-buttons .btn-accion:focus {
+  background-color: #0066ff;
+  color: white;
+  outline: none;
+}
+
+/* Botones de acción */
+.btn-accion {
+  display: inline-block;
+  padding: 10px 20px;
+  white-space: nowrap;
+  width: auto;
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1.1em;
+  border-radius: 5px;
+  border: 2px solid #00c3ff;
+  background: transparent;
+  color: #001a4d;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}

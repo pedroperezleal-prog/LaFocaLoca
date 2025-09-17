@@ -1,118 +1,103 @@
 /* Fuente personalizada */
 @font-face {
-  font-family: 'PetitCochon';
-  src: url('./fonts/PetitCochon.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
+  font-family: 'PetitCochon';          /* Nombre de la fuente personalizada */
+  src: url('./fonts/PetitCochon.ttf') format('truetype'); /* Ruta y formato de la fuente */
+  font-weight: 300;                    /* Peso de la fuente */
+  font-style: normal;                  /* Estilo de la fuente */
+}
+h1 {
+  color: yellow;             /* Texto en color amarillo */
+  text-align: center;        /* Centrar el texto horizontalmente */
+  font-size: 6em;            /* Tamaño de letra más grande */
+  font-family: 'PetitCochon', cursive, sans-serif; /* Fuente personalizada */
+  font-weight: 300;          /* Peso ligero acorde al estilo */
+  margin: 20px 0;            /* Margen vertical para separar del resto */
 }
 
 /* Estilos generales */
 html, body, * {
-  font-family: 'PetitCochon', cursive, sans-serif;
-  font-weight: 300;
-  font-size: 1.1em;
-  -webkit-font-smoothing: antialiased;
-  font-smooth: always;
-  text-shadow: none;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  font-family: 'PetitCochon', cursive, sans-serif; /* Fuente por defecto para toda la página */
+  font-weight: 300;                    /* Peso ligero para toda la tipografía */
+  font-size: 1.1em;                   /* Tamaño de letra base */
+  -webkit-font-smoothing: antialiased; /* Suavizado de fuentes en WebKit */
+  font-smooth: always;                /* Suavizado de fuente para otros navegadores */
+  text-shadow: none;                  /* Sin sombra en el texto */
+  margin: 0;                         /* Eliminar márgenes predeterminados */
+  padding: 0;                        /* Eliminar relleno predeterminado */
+  box-sizing: border-box;            /* Incluye border y padding en el cálculo de ancho/alto */
 }
 
-/* Inputs y selects - fondo transparente */
-#form-container input,
-#form-container-secundaria input,
-select#color, select#merienda {
-  background: transparent !important;
-  color: #001a4d !important;
-  font-weight: 300;
-  font-size: 1.1em;
-  border: 2px solid #00c3ff;
-  border-radius: 5px;
-  padding: 7px;
-  width: 100%;
-  box-sizing: border-box;
-  text-transform: uppercase;
+/* Asegurar el 100% de altura para html y body */
+html, body {
+  height: 100%;                      /* Altura completa del viewport */
 }
 
-/* Opciones transparentes para selects */
-select#color option,
-select#merienda option {
-  background: transparent !important;
-  color: #001a4d !important;
-}
-
-/* Colores para opciones del select color */
-#color option[value="azul"] { color: blue; }
-#color option[value="verde"] { color: green; }
-#color option[value="rojo"] { color: red; }
-
-/* Menú personalizado .custom-select */
-.custom-select {
-  position: relative;
-  cursor: pointer;
-  background: transparent !important;
-  border: 2px solid #00c3ff;
-  padding: 8px;
-  border-radius: 5px;
-  user-select: none;
-  width: 100%;
-  max-width: 350px;
-  font-weight: 300;
-  font-size: 1.1em;
-  color: #001a4d;
-  box-sizing: border-box;
-  text-transform: uppercase;
-}
-
-.custom-select .selected {
-  display: block;
-  color: #001a4d;
-}
-
-.custom-select .options {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  background: transparent !important;
-  border: 2px solid #00c3ff;
-  border-top: none;
-  max-height: 150px;
-  overflow-y: auto;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  z-index: 10;
-  box-sizing: border-box;
-  text-transform: uppercase;
-}
-
-.custom-select .options li {
-  padding: 8px;
-  background: transparent !important;
-  color: #001a4d !important;
-  cursor: pointer;
-  border-bottom: 1px solid #00c3ff;
-}
-
-.custom-select .options li:last-child {
-  border-bottom: none;
-}
-
-.custom-select .options li:hover,
-.custom-select .options li[aria-selected="true"] {
-  background: rgba(217, 255, 0, 0.3) !important;
-  color: #001a4d !important;
-}
-
-/* Otros estilos que ya tenías */
+/* Estilo fondo para body con clase index */
 body.index {
-  background-image: url("foca.jpg?v=1");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: #40c4e6;
+  background-image: url("foca.jpg?v=1"); /* Imagen de fondo */
+  background-size: cover;            /* La imagen cubre todo el área sin distorsión */
+  background-repeat: no-repeat;      /* No repetir la imagen */
+  background-position: center center; /* Centrar imagen en ambas direcciones */
+  background-color: #40c4e6;         /* Color de fondo de respaldo */
+  height: 100%;                      /* Altura completa para que el fondo cubra toda la pantalla */
+  margin: 0;                        /* Eliminar margen para ajuste correcto */
 }
 
-/* ... el resto de tus estilos sin cambios ... */
+footer {
+  position: fixed;           /* Fija el footer respecto a la ventana */
+  bottom: 0;                 /* Lo ubica en la parte inferior */
+  right: 0;                  /* Lo alinea a la derecha */
+  background: transparent;   /* Fondo transparente para no tapar contenido */
+  color: yellow;             /* Texto en color amarillo */
+  padding: 10px 20px;        /* Espaciado interno para estética */
+  font-family: 'PetitCochon', cursive, sans-serif; /* Fuente personalizada */
+  font-weight: 300;          /* Peso ligero acorde al tema */
+  font-size: 1em;            /* Tamaño normal del texto */
+  z-index: 1000;             /* Para que quede encima de otros elementos */
+  white-space: nowrap;       /* Evita que el texto se divida en varias líneas */
+}
+nav {
+  display: flex;               /* Colocar los botones en línea */
+  gap: 20px;                  /* Espacio entre botones */
+  justify-content: left;    /* Centrar horizontalmente el nav */
+  align-items: center;        /* Alinear verticalmente */
+  padding: 60px;
+}
+
+nav button {
+  background: none;           /* Sin fondo */
+  border: none;               /* Sin borde */
+  cursor: pointer;            /* Cursor de mano */
+  padding: 0;
+
+}
+nav button img {
+  width: 500px;               /* Tamaño inicial de las imágenes */
+  
+}
+nav button img {
+  width: 500px;               /* Tamaño inicial de las imágenes */
+  transition: transform 0.3s ease, filter 0.3s ease; /* Suavizar transform y filtro */
+}
+
+nav button:hover img {
+  transform: translateZ(20px) translateX(10px); /* Se adelanta y se mueve un poco a la derecha */
+  filter: blur(2px);          /* Aplica desenfoque */
+  /* Para mejor efecto 3D puedes añadir */
+  /* transform-style: preserve-3d; */
+}
+.titulo-foto {
+  margin-top: 8px;
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-size: 2em;
+  font-weight: 300;
+  color: yellow;
+  text-align: center;
+  user-select: none;
+}
+nav button {
+  display: flex;
+  flex-direction: column; /* columna: imagen arriba, título abajo */
+  align-items: center;
+}
+
