@@ -27,7 +27,6 @@ body {
 }
 
 body {
-
   min-height: 100vh;
   background-image: url("foca1.jpg");
   background-color: ;
@@ -39,20 +38,6 @@ body {
   padding: 0;
   color: yellow;
   text-shadow: 0 0 8px #00000088;
-}
-
-@keyframes parpadeo-rojo {
-  0%,
-  100% {
-    background-color: transparent;
-  }
-  50% {
-    background-color: #ff4d4d;
-  }
-}
-
-.parpadea {
-  animation: parpadeo-rojo 1s infinite;
 }
 
 .top-right-buttons {
@@ -99,8 +84,8 @@ body {
 
 #form-container {
   max-width: 600px;
-  margin: 80px 20px 20px 400px; /* margen izquierdo para empujar a la derecha */
-  background: rgba(0, 0, 0, 0.45); /* fondo semitransparente para mejor visibilidad */
+  margin: 80px 20px 20px 400px;
+  background: rgba(0, 0, 0, 0.45);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 16px #f9d71c;
@@ -164,12 +149,11 @@ select#color option[value="Rojo"] {
 
 .tablas-container {
   display: flex;
-  flex-direction: column; /* apila en vertical */
+  flex-direction: column; /* para apilar verticalmente */
   gap: 30px;
   margin: 20px 50px 50px 50px;
 }
 
-/* Para que cada sección de tabla ocupe todo ancho disponible */
 .tabla-section {
   background: rgba(0, 0, 0, 0.45);
   padding: 15px;
@@ -178,15 +162,13 @@ select#color option[value="Rojo"] {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Para centrar contenido horizontalmente */
+  align-items: center;
 }
 
-/* Separar botones de acción de la tabla */
 .tabla-section > div:not(.tabla-title) {
   margin-bottom: 15px;
 }
 
-/* Títulos de tabla alineados a la izquierda */
 .tabla-title {
   font-size: 1.2em;
   font-weight: 300;
@@ -194,7 +176,6 @@ select#color option[value="Rojo"] {
   align-self: flex-start;
 }
 
-/* Centramos la tabla dentro del contenedor */
 .tabla-section table {
   margin: 0 auto;
   width: 100%;
@@ -220,19 +201,10 @@ tbody td {
   border: 1px solid #00c3ff;
   padding: 6px 8px;
   text-align: center;
-  color:yellow;
+  color: yellow;
 }
 
-/* Responsive: en pantallas pequeñas, cambia a flex en fila */
 @media (max-width: 768px) {
-  .tablas-container {
-    flex-direction: row; /* cambia a fila horizontal */
-    flex-wrap: wrap;
-  }
-  .tabla-section {
-    width: 48%; /* dos tablas por fila */
-    margin-bottom: 20px;
-  }
   #form-container {
     margin: 80px 20px 20px 20px;
     max-width: 100%;
@@ -252,6 +224,7 @@ tbody td {
     padding: 8px 15px;
   }
 }
+
 @media (max-width: 480px) {
   h1 {
     font-size: 1.8em;
