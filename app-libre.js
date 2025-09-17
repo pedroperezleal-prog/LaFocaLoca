@@ -66,7 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         tr.classList.remove('parpadea');
         return;
       }
-      const checkboxAvisado = tr.querySelector('td:last-child input[type="checkbox"]');
+      const checkboxAvisado = tr.querySelector(
+        'td:last-child input[type="checkbox"]'
+      );
       const avisado = checkboxAvisado && checkboxAvisado.checked;
       const ahora = new Date();
       const [hS, mS] = horasalida.split(':').map(Number);
@@ -152,6 +154,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const id = idInput.value.trim();
     const nombre = nombreInput.value.trim();
 
+    if (!id || !nombre) {
+      alert("Por favor, complete los campos obligatorios: ID y Nombre.");
+      return;
+    }
+
     // El resto de inputs opcionales
     const color = colorInput.value.trim();
     const telefono = telefonoInput.value.trim();
@@ -160,7 +167,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const horasalida = horaSalidaInput.value;
     const abonado = abonadoInput.value.trim();
 
-    const tr = document.createElement('tr');
+    if (tiempoJuego && (isNaN(tiempoJuego) || Number(tiempoJuego) < 0)) {
+      alert("El tiempo de juego debe ser un número positivo.");
+      return;
+    }
+
+    const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${id}</td>
       <td>${color}</td>
@@ -172,13 +184,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <td class="restante" data-horasalida="${horasalida}" data-tiempojuego="${tiempoJuego}"></td>
       <td>${abonado}</td>
     `;
-    const tdAvisado = document.createElement('td');
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.setAttribute('aria-label', `Marcar avisado para ${nombre}`);
-    checkbox.addEventListener('change', () => {
+    const tdAvisado = document.createElement("td");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.setAttribute("aria-label", `Marcar avisado para ${nombre}`);
+    checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
-        tr.classList.remove('parpadea');
+        tr.classList.remove("parpadea");
         guardarDatosLocalStorage();
       }
     });
@@ -188,65 +200,67 @@ document.addEventListener('DOMContentLoaded', () => {
     tablaBody.appendChild(tr);
 
     // Limpiar formulario y preparar para nuevo
-    idInput.value = '';
-    colorInput.value = '';
-    nombreInput.value = '';
-    telefonoInput.value = '';
-    tiempoJuegoInput.value = '';
-    horaSalidaInput.value = '';
-    abonadoInput.value = '';
+    idInput.value = "";
+    colorInput.value = "Azul";
+    nombreInput.value = "";
+    telefonoInput.value = "";
+    tiempoJuegoInput.value = "";
+    horaSalidaInput.value = "";
+    abonadoInput.value = "";
     setHoraActual();
     idInput.focus();
     actualizarRestantes();
     guardarDatosLocalStorage();
   });
 
-  exportExcelBtn?.addEventListener('click', () => {
-    const table = document.getElementById('tabla');
+  exportExcelBtn?.addEventListener("click", () => {
+    const table = document.getElementById("tabla");
     // Crear fila con fecha
-    const thead = table.querySelector('thead');
-    const fechaTr = document.createElement('tr');
-    const fechaTd = document.createElement('td');
+    const thead = table.querySelector("thead");
+    const fechaTr = document.createElement("tr");
+    const fechaTd = document.createElement("td");
     // Poner la fecha y hacer que ocupe todas las columnas
-    fechaTd.colSpan = thead.querySelectorAll('th').length;
+    fechaTd.colSpan = thead.querySelectorAll("th").length;
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString();
     fechaTd.textContent = `Fecha: ${fechaStr}`;
-    fechaTd.style.fontWeight = 'bold';
-    fechaTd.style.textAlign = 'center';
+    fechaTd.style.fontWeight = "bold";
+    fechaTd.style.textAlign = "center";
     fechaTr.appendChild(fechaTd);
     // Insertar la fila fecha antes del thead
     thead.parentNode.insertBefore(fechaTr, thead);
     // Exportar tabla a Excel
     const html = encodeURIComponent(table.outerHTML);
-    const url = 'data:application/vnd.ms-excel;charset=utf-8,' + html;
-    const a = document.createElement('a');
+    const url = "data:application/vnd.ms-excel;charset=utf-8," + html;
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'foca_loca_registros.xls';
+    a.download = "foca_loca_registros.xls";
     a.click();
     a.remove();
     // Quitar la fila fecha para dejar la tabla igual que antes
     fechaTr.remove();
   });
 
-  exportPdfBtn?.addEventListener('click', () => {
+  exportPdfBtn?.addEventListener("click", () => {
     if (!window.jspdf) {
-      alert('Librería jsPDF no cargada. Añade jsPDF y jsPDF-autotable para esta función.');
+      alert(
+        "Librería jsPDF no cargada. Añade jsPDF y jsPDF-autotable para esta función."
+      );
       return;
     }
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation: 'landscape' });
+    const doc = new jsPDF({ orientation: "landscape" });
     const margin = 15;
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString();
-    doc.text('Listado de Registros - La Foca Loca', margin, margin);
+    doc.text("Listado de Registros - La Foca Loca", margin, margin);
     doc.text(`Fecha: ${fechaStr}`, margin, margin + 8);
     doc.autoTable({
-      html: '#tabla',
+      html: "#tabla",
       startY: margin + 20,
       margin: { left: margin, right: margin, top: margin, bottom: margin },
       styles: {
-        overflow: 'linebreak',
+        overflow: "linebreak",
         lineWidth: 0.3,
         lineColor: [0, 0, 0],
         fontSize: 10,
@@ -256,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         textColor: [0, 0, 0],
         lineWidth: 0.7,
         lineColor: [0, 0, 0],
-        fontStyle: 'bold',
+        fontStyle: "bold",
       },
       bodyStyles: {
         fillColor: [255, 255, 255],
@@ -266,14 +280,16 @@ document.addEventListener('DOMContentLoaded', () => {
       alternateRowStyles: {
         fillColor: [245, 245, 245],
       },
-      pageBreak: 'auto',
+      pageBreak: "auto",
     });
-    doc.save('foca_loca_registros.pdf');
+    doc.save("foca_loca_registros.pdf");
   });
 
-  resetBtn?.addEventListener('click', () => {
-    tablaBody.innerHTML = '';
-    localStorage.removeItem('foca_loca_datos');
+  resetBtn?.addEventListener("click", () => {
+    if (confirm("¿Seguro que quieres eliminar todos los registros?")) {
+      tablaBody.innerHTML = "";
+      localStorage.removeItem("foca_loca_datos");
+    }
   });
 
   setInterval(actualizarRestantes, 1000);

@@ -18,99 +18,6 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"
       defer
     ></script>
-    <style>
-      /* Animación parpadeo rojo para filas con tiempo restante 0 */
-      @keyframes parpadeo-rojo {
-        0%,
-        100% {
-          background-color: transparent;
-        }
-        50% {
-          background-color: #ff4d4d;
-        }
-      }
-      .parpadea {
-        animation: parpadeo-rojo 1s infinite;
-      }
-      /* Botones arriba a la derecha fuera del contenedor */
-      .top-right-buttons {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        display: inline-block;
-        gap: 10px;
-        z-index: 1000;
-      }
-      .top-right-buttons .btn-accion {
-        background-color: #1cbaf9;
-        color: #ffff00;
-        font-weight: 300;
-        cursor: pointer;
-        border: none;
-        display: inline-block;
-        border-radius: 6px;
-        padding: 10px 20px;
-        font-size: 1.2em;
-        min-height: 40px;
-        white-space: nowrap;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-      .top-right-buttons .btn-accion:hover,
-      .top-right-buttons .btn-accion:focus {
-        background-color: #0066ff;
-        color: white;
-        outline: none;
-      }
-      /* Contenedor para los botones reset y nuevo juntos a la derecha */
-      .botones-reset-nuevo {
-        display: inline-block;
-        justify-content: flex-end;
-        gap: 10px;
-        margin-bottom: 15px;
-        align-items: center;
-        width: 100%;
-      }
-      /* Contenedor formulario */
-      #form-container {
-        max-width: 600px;
-        margin: 80px 0 20px 80px;
-        background: transparent;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 16px #f9d71c;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        font-family: "PetitCochon", cursive, sans-serif;
-      }
-      /* Input groups */
-      .input-group {
-        margin-bottom: 12px;
-        width: 100%;
-        max-width: 350px;
-      }
-      label {
-        display: block;
-        font-weight: 300;
-        margin-bottom: 4px;
-        color: #ff4500;
-      }
-      input[type="number"],
-      input[type="text"],
-      input[type="tel"],
-      input[type="time"] {
-        text-transform: uppercase;
-        font-weight: 300;
-        color: #001a4d;
-        width: 100%;
-        padding: 7px;
-        font-size: 1.1em;
-        border-radius: 5px;
-        border: 2px solid #00c3ff;
-        background: transparent;
-        box-sizing: border-box;
-      }
-    </style>
   </head>
   <body class="libre">
     <main>
@@ -135,16 +42,16 @@
         </button>
       </div>
       <section id="form-container" aria-label="Formulario de registro">
-        <button
-          id="nuevoBtn"
-          class="btn-accion"
-          type="button"
-          aria-label="Poner hora actual en hora de entrada"
-          title="Poner hora actual en hora de entrada"
-        >
-          Nuevo
-        </button>
         <div class="botones-reset-nuevo">
+          <button
+            id="nuevoBtn"
+            class="btn-accion"
+            type="button"
+            aria-label="Poner hora actual en hora de entrada"
+            title="Poner hora actual en hora de entrada"
+          >
+            Nuevo
+          </button>
           <button
             id="resetBtn"
             class="btn-accion"
@@ -161,32 +68,10 @@
         </div>
         <div class="input-group">
           <label for="color">COLOR:</label>
-
-          <select
-            id="color"
-            name="color"
-            style="
-              background: transparent;
-              color: #001a4d;
-              font-weight: 300;
-              text-transform: uppercase;
-              font-size: 1.1em;
-              border: 2px solid #00c3ff;
-              border-radius: 5px;
-              padding: 7px;
-              box-sizing: border-box;
-              width: 100%;
-            "
-          >
-            <option value="Azul" style="color: blue; background: transparent">
-              Azul
-            </option>
-            <option value="Verde" style="color: green; background: transparent">
-              Verde
-            </option>
-            <option value="Rojo" style="color: red; background: transparent">
-              Rojo
-            </option>
+          <select id="color" name="color" required>
+            <option value="Azul" style="color: blue;">Azul</option>
+            <option value="Verde" style="color: green;">Verde</option>
+            <option value="Rojo" style="color: red;">Rojo</option>
           </select>
         </div>
         <div class="input-group">
@@ -217,13 +102,7 @@
         </div>
         <div class="input-group">
           <label for="abonado">ABONADO (€):</label>
-          <input
-            type="number"
-            id="abonado"
-            name="abonado"
-            min="0"
-            step="0.01"
-          />
+          <input type="number" id="abonado" name="abonado" min="0" step="0.01" />
         </div>
         <div class="botones-accion">
           <button
