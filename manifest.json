@@ -10,6 +10,21 @@
   "orientation": "portrait",
   "iarc_rating_id": "1586f46b-7a3b-4ebe-8c63-d94fe4dd81a0", 
   "lang": "es-ES",
+  "display_override": [ "window-controls-overlay","standalone","browser"
+],
+
+  "related_applications": [
+  {
+    "platform": "windows",
+    "url": "https://apps.microsoft.com/detail/9NH4RXR8PFZF",
+    "id": "9NH4RXR8PFZF"
+  },
+  {
+    "platform": "play",
+    "url": "https://play.google.com/store/games?hl=es_419&pli=1"
+  }
+]
+,
   "icons": [
     {
       "src": "icon-192.png",
@@ -56,7 +71,7 @@
   "protocol_handlers": [
     {
       "protocol": "web+focaloca",
-      "url": "https://apps.microsoft.com/detail/9NH4RXR8PFZF"
+      "url": "https://pedroperezleal-prog.github.io/LaFocaLoca/"
     }
   ]
 }
