@@ -1,45 +1,84 @@
 // Función para actualizar color visual del select #color
 function updateColorText() {
-  const colorSelect = document.getElementById('color');
+  const colorSelect = document.getElementById("color");
   const selectedColor = colorSelect.value;
   switch (selectedColor) {
-    case 'azul':
-      colorSelect.style.color = 'blue';
+    case "azul":
+      colorSelect.style.color = "blue";
       break;
-    case 'verde':
-      colorSelect.style.color = 'green';
+    case "verde":
+      colorSelect.style.color = "green";
       break;
-    case 'rojo':
-      colorSelect.style.color = 'red';
+    case "rojo":
+      colorSelect.style.color = "red";
       break;
     default:
-      colorSelect.style.color = 'black';
+      colorSelect.style.color = "black";
   }
 }
 
-// Insertar fila en tabla según color
+// Guarda todos los datos visibles en localStorage (por color)
+function guardarDatos() {
+  const colores = ["azul", "verde", "rojo"];
+  const datos = {};
+  colores.forEach((color) => {
+    const filas = [];
+    const tablaBody = document.querySelector(`.tabla-${color} tbody`);
+    if (tablaBody) {
+      tablaBody.querySelectorAll("tr").forEach((tr) => {
+        const celdas = tr.querySelectorAll("td");
+        const fila = [];
+        celdas.forEach((td) => fila.push(td.textContent));
+        filas.push(fila);
+      });
+    }
+    datos[color] = filas;
+  });
+  localStorage.setItem("datosCumpleaños", JSON.stringify(datos));
+}
+
+// Carga los datos desde localStorage y rellena las tablas
+function cargarDatos() {
+  const datos = localStorage.getItem("datosCumpleaños");
+  if (!datos) return;
+  const objetos = JSON.parse(datos);
+  Object.keys(objetos).forEach((color) => {
+    const tablaBody = document.querySelector(`.tabla-${color} tbody`);
+    if (!tablaBody) return;
+    tablaBody.innerHTML = "";
+    objetos[color].forEach((fila) => {
+      const nuevaFila = document.createElement("tr");
+      nuevaFila.innerHTML = fila
+        .map((celda) => `<td>${celda}</td>`)
+        .join("");
+      tablaBody.appendChild(nuevaFila);
+    });
+  });
+}
+
+// Insertar fila en tabla según color y guardar
 function insertarFila() {
-  const id = document.getElementById('id').value.trim();
-  const color = document.getElementById('color').value.trim();
-  const nombre = document.getElementById('nombre').value.trim();
-  const telefono = document.getElementById('telefono').value.trim();
-  const meriendaSelect = document.getElementById('merienda');
+  const id = document.getElementById("id").value.trim();
+  const color = document.getElementById("color").value.trim();
+  const nombre = document.getElementById("nombre").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const meriendaSelect = document.getElementById("merienda");
   const merienda = meriendaSelect.options[meriendaSelect.selectedIndex].text;
-  const observaciones = document.getElementById('observaciones').value.trim();
+  const observaciones = document.getElementById("observaciones").value.trim();
 
   if (!id || !nombre) {
-    alert('Los campos ID y NOMBRE son obligatorios.');
+    alert("Los campos ID y NOMBRE son obligatorios.");
     return;
   }
 
   const tablaBody = document.querySelector(`.tabla-${color} tbody`);
   if (!tablaBody) {
-    alert('No se encontró la tabla para el color seleccionado.');
+    alert("No se encontró la tabla para el color seleccionado.");
     return;
   }
 
   // Crear fila
-  const nuevaFila = document.createElement('tr');
+  const nuevaFila = document.createElement("tr");
   nuevaFila.innerHTML = `
     <td>${id}</td>
     <td>${nombre}</td>
@@ -50,21 +89,25 @@ function insertarFila() {
 
   tablaBody.appendChild(nuevaFila);
 
+  // Guardar datos
+  guardarDatos();
+
   // Limpiar formulario
-  document.getElementById('id').value = '';
-  document.getElementById('nombre').value = '';
-  document.getElementById('telefono').value = '';
-  document.getElementById('merienda').selectedIndex = 0;
-  document.getElementById('observaciones').value = '';
-  document.getElementById('color').value = 'azul';
+  document.getElementById("id").value = "";
+  document.getElementById("nombre").value = "";
+  document.getElementById("telefono").value = "";
+  document.getElementById("merienda").selectedIndex = 0;
+  document.getElementById("observaciones").value = "";
+  document.getElementById("color").value = "azul";
   updateColorText();
 }
 
-// Limpiar tabla
+// Limpiar tabla y borrar datos guardados
 function limpiarTabla(color) {
   const tablaBody = document.querySelector(`.tabla-${color} tbody`);
   if (!tablaBody) return;
-  tablaBody.innerHTML = '';
+  tablaBody.innerHTML = "";
+  guardarDatos();
 }
 
 // Exportar tabla a CSV (compatible Excel)
@@ -72,31 +115,30 @@ function exportarTablaExcel(color) {
   const tabla = document.querySelector(`.tabla-${color}`);
   if (!tabla) return;
 
-  let csv = '';
-  const filas = tabla.querySelectorAll('tr');
-  filas.forEach(fila => {
-    const columnas = fila.querySelectorAll('th,td');
+  let csv = "";
+  const filas = tabla.querySelectorAll("tr");
+  filas.forEach((fila) => {
+    const columnas = fila.querySelectorAll("th,td");
     let filaCSV = [];
-    columnas.forEach(col => {
+    columnas.forEach((col) => {
       let texto = col.innerText.replace(/"/g, '""');
       filaCSV.push(`"${texto}"`);
     });
-    csv += filaCSV.join(',') + '\n';
+    csv += filaCSV.join(",") + "\n";
   });
 
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
   const url = URL.createObjectURL(blob);
-  const enlace = document.createElement('a');
-  enlace.setAttribute('href', url);
-  enlace.setAttribute('download', `tabla_${color}.csv`);
-  enlace.style.display = 'none';
+  const enlace = document.createElement("a");
+  enlace.setAttribute("href", url);
+  enlace.setAttribute("download", `tabla_${color}.csv`);
+  enlace.style.display = "none";
   document.body.appendChild(enlace);
   enlace.click();
   document.body.removeChild(enlace);
 }
 
 // Exportar tabla a PDF (requiere jsPDF y plugin AutoTable)
-// Recuerda agregar las librerías jsPDF y jsPDF-AutoTable en tu HTML.
 function exportarTablaPDF(color) {
   const tabla = document.querySelector(`.tabla-${color}`);
   if (!tabla) return;
@@ -108,27 +150,29 @@ function exportarTablaPDF(color) {
     doc.autoTable({ html: tabla, startY: 30 });
     doc.save(`tabla_${color}.pdf`);
   } else {
-    alert('Para exportar a PDF, incluye la librería jsPDF y jsPDF-autoTable.');
+    alert("Para exportar a PDF, incluye la librería jsPDF y jsPDF-autoTable.");
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   updateColorText();
 
-  document.getElementById('color').addEventListener('change', updateColorText);
-  document.getElementById('insertarBtn').addEventListener('click', insertarFila);
+  cargarDatos(); // Cargar datos guardados al cargar la página
+
+  document.getElementById("color").addEventListener("change", updateColorText);
+  document.getElementById("insertarBtn").addEventListener("click", insertarFila);
 
   // Eventos de botones de acción en las tablas
-  document.querySelectorAll('.tabla-accion-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const tablaColor = btn.getAttribute('data-tabla');
-      const accion = btn.getAttribute('data-accion');
+  document.querySelectorAll(".tabla-accion-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const tablaColor = btn.getAttribute("data-tabla");
+      const accion = btn.getAttribute("data-accion");
 
-      if (accion === 'limpiar') {
+      if (accion === "limpiar") {
         limpiarTabla(tablaColor);
-      } else if (accion === 'exportarExcel') {
+      } else if (accion === "exportarExcel") {
         exportarTablaExcel(tablaColor);
-      } else if (accion === 'exportarPDF') {
+      } else if (accion === "exportarPDF") {
         exportarTablaPDF(tablaColor);
       }
     });
@@ -136,8 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Registro del service worker para PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js');
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
   });
 }
