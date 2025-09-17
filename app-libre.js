@@ -294,3 +294,153 @@ document.addEventListener('DOMContentLoaded', () => {
 
   setInterval(actualizarRestantes, 1000);
 });
+/* Fuente personalizada */
+@font-face {
+  font-family: 'PetitCochon';
+  src: url('./fonts/PetitCochon.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+h1 {
+  color: yellow;
+  text-align: center;
+  font-size: 6em;
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-weight: 300;
+  margin: 20px 0;
+}
+
+/* Estilos generales */
+html, body, * {
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1.1em;
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
+  text-shadow: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden; /* Sin scroll visible */
+}
+
+/* Fondo para body con clase index */
+body.index {
+  background-image: url("foca.jpg?v=1");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #40c4e6;
+  height: 100%;
+  margin: 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background: transparent;
+  color: yellow;
+  padding: 10px 20px;
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  z-index: 1000;
+  white-space: nowrap;
+}
+
+nav {
+  display: flex;
+  gap: 20px;
+  justify-content: left;
+  align-items: center;
+  padding: 60px;
+}
+
+/* Botones con imagen y título centrado debajo */
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+nav button img {
+  width: 500px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+nav button:hover img {
+  transform: translateZ(20px) translateX(10px);
+  filter: blur(2px);
+}
+
+nav button .titulo-foto {
+  color: yellow;
+  margin-top: 8px;
+  font-family: 'PetitCochon', cursive, sans-serif;
+  font-weight: 300;
+  font-size: 1.7em;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Media Queries para dispositivos pequeños */
+
+@media (max-width: 1024px) {
+  nav button img {
+    width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  nav button img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+  h1 {
+    font-size: 3em;
+  }
+  footer {
+    font-size: 0.9em;
+    padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav button img {
+    max-width: 200px;
+  }
+  h1 {
+    font-size: 2em;
+    margin: 15px 0;
+  }
+  body.index {
+    background-position: top center;
+  }
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      console.log('Service Worker registrado con éxito:', registration.scope);
+    }, function(error) {
+      console.log('Fallo al registrar el Service Worker:', error);
+    });
+  });
+}

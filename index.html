@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="index no-scroll">
+
     <main>
       <h1>Bienvenido a La Foca Loca</h1>
 
@@ -30,5 +31,17 @@
     <footer>
       <p>Desarrollado por PericoPL &copy; 2025</p>
     </footer>
-  </body>
+    <!-- al final del body para que la página cargue primero -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/sw.js').then(function(registration) {
+        console.log('Service Worker registrado con éxito:', registration.scope);
+      }, function(error) {
+        console.log('Fallo al registrar el Service Worker:', error);
+      });
+    });
+  }
+</script>
+</body>
 </html>
