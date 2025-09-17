@@ -27,9 +27,10 @@ body {
 }
 
 body {
-  background-color: #40c4e6;
+
   min-height: 100vh;
   background-image: url("foca1.jpg");
+  background-color: ;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -137,7 +138,7 @@ select {
   font-size: 1.1em;
   border-radius: 5px;
   border: 2px solid #00c3ff;
-  background: rgba(0, 0, 0, 0.3); /* fondo oscuro semitransparente para inputs */
+  background: rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   text-shadow: none;
 }
@@ -161,10 +162,47 @@ select#color option[value="Rojo"] {
   color: red;
 }
 
-table {
+.tablas-container {
+  display: flex;
+  flex-direction: column; /* apila en vertical */
+  gap: 30px;
+  margin: 20px 50px 50px 50px;
+}
+
+/* Para que cada sección de tabla ocupe todo ancho disponible */
+.tabla-section {
+  background: rgba(0, 0, 0, 0.45);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 16px #f9d71c;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Para centrar contenido horizontalmente */
+}
+
+/* Separar botones de acción de la tabla */
+.tabla-section > div:not(.tabla-title) {
+  margin-bottom: 15px;
+}
+
+/* Títulos de tabla alineados a la izquierda */
+.tabla-title {
+  font-size: 1.2em;
+  font-weight: 300;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+/* Centramos la tabla dentro del contenedor */
+.tabla-section table {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
-  margin: 0 20px 40px 20px;
+}
+
+table {
   font-weight: 300;
   font-family: "PetitCochon", cursive, sans-serif;
 }
@@ -182,12 +220,21 @@ tbody td {
   border: 1px solid #00c3ff;
   padding: 6px 8px;
   text-align: center;
-  color: #001a4d;
+  color:yellow;
 }
 
+/* Responsive: en pantallas pequeñas, cambia a flex en fila */
 @media (max-width: 768px) {
+  .tablas-container {
+    flex-direction: row; /* cambia a fila horizontal */
+    flex-wrap: wrap;
+  }
+  .tabla-section {
+    width: 48%; /* dos tablas por fila */
+    margin-bottom: 20px;
+  }
   #form-container {
-    margin: 80px 10px 20px 10px;
+    margin: 80px 20px 20px 20px;
     max-width: 100%;
   }
   .input-group {
@@ -204,16 +251,7 @@ tbody td {
     font-size: 1em;
     padding: 8px 15px;
   }
-  .botones-reset-nuevo {
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-  .botones-reset-nuevo button {
-    margin-bottom: 5px;
-  }
 }
-
 @media (max-width: 480px) {
   h1 {
     font-size: 1.8em;
@@ -222,14 +260,4 @@ tbody td {
   table {
     font-size: 0.8em;
   }
-}
-.tabla-section > div:first-child {
-  margin-bottom: 5px;
-}
-.tabla-section {
-  margin: 0;;
-  background: rgba(0, 0, 0, 0.45); /* fondo semitransparente para mejor visibilidad */
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 0 16px #f9d71c;
 }
