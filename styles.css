@@ -65,7 +65,7 @@ nav {
   justify-content: left;
   align-items: center;
   padding: 15px;
-  margin-left: 200px;
+  margin-left: 100px;
   margin-top: 60px;
 }
 
@@ -140,3 +140,11 @@ nav button .titulo-foto {
     background-position: top center;
   }
 }
+
+/* Ejemplo: forma ovalada */
+nav button img {
+  clip-path: ellipse(70% 60% at 50% 50%);
+  object-fit: cover;
+  border-radius: 20%; /* opcional, un poco de redondeo adicional */
+}
+
