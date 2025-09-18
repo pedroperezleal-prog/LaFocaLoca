@@ -50,7 +50,7 @@ body.libre{
 }
 #form-container{
   max-width:600px;
-  margin:80px 20px 20px 400px; /* margen izquierdo para empujar a la derecha */
+  margin:80px 20px 20px 170px; /* margen izquierdo para empujar a la derecha */
   background:rgba(0,0,0,0.45); /* fondo semitransparente para mejor visibilidad */
   padding:20px;
   border-radius:8px;

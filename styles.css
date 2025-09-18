@@ -8,11 +8,11 @@
 
 h1 {
   color: yellow;
-  text-align: center;
-  font-size: 6em;
+  text-align: left;
+  font-size: clamp(2em, 10vw, 6em);
   font-family: 'PetitCochon', cursive, sans-serif;
   font-weight: 300;
-  margin: 20px 0;
+  margin-left: 5vw; /* margen izquierdo proporcional al 5% del ancho de la ventana */
 }
 
 /* Estilos generales */
@@ -26,7 +26,7 @@ html, body, * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+
 }
 
 html, body {
@@ -40,7 +40,7 @@ body.index {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color: #40c4e6;
+  background-color:  #105f9a;
   height: 100%;
   margin: 0;
 }
@@ -65,7 +65,8 @@ nav {
   justify-content: left;
   align-items: center;
   padding: 15px;
-
+  margin-left: 200px;
+  margin-top: 60px;
 }
 
 /* Botones con imagen y título centrado debajo */
@@ -80,7 +81,7 @@ nav button {
 }
 
 nav button img {
-  width: 500px;
+  width: 250px; /* tamaño base más pequeño */
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
@@ -100,10 +101,9 @@ nav button .titulo-foto {
 }
 
 /* Media Queries para dispositivos pequeños */
-
 @media (max-width: 1024px) {
   nav button img {
-    width: 400px;
+    width: 200px;
   }
 }
 
@@ -116,7 +116,7 @@ nav button .titulo-foto {
   }
   nav button img {
     width: 100%;
-    max-width: 300px;
+    max-width: 150px;
     height: auto;
   }
   h1 {
@@ -130,7 +130,7 @@ nav button .titulo-foto {
 
 @media (max-width: 480px) {
   nav button img {
-    max-width: 200px;
+    max-width: 100px;
   }
   h1 {
     font-size: 2em;
