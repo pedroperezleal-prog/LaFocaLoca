@@ -5,6 +5,7 @@ body.libre{
   background-color:#40c4e6;
   min-height:100vh;
   background-image:url("foca.jpg?v=1");
+  background-color:  #105f9a;
   background-size:cover;
   background-repeat:no-repeat;
   background-position:center center;
@@ -155,4 +156,7 @@ tbody td{
   table{
     font-size:0.8em;
   }
+}
+#tabla td, #tabla th {
+  color: yellow; /* El color que prefieras */
 }

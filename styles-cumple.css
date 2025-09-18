@@ -155,7 +155,7 @@ select#color option[value="Rojo"] {
 }
 
 .tabla-section {
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.247);
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 0 16px #f9d71c;
@@ -233,4 +233,21 @@ tbody td {
   table {
     font-size: 0.8em;
   }
+}
+/* Encabezados mantienen amarillo */
+thead th {
+  color: yellow;
+}
+
+/* Texto de celdas de cada tabla */
+.tabla-azul tbody td {
+  color: rgb(0, 255, 255);
+}
+
+.tabla-verde tbody td {
+  color: rgb(33, 235, 43);
+}
+
+.tabla-rojo tbody td {
+  color: red;
 }
