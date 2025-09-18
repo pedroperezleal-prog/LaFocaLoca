@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const exportExcelBtn = document.getElementById('exportExcel');
   const exportPdfBtn = document.getElementById('exportPdf');
   const resetBtn = document.getElementById('resetBtn');
+  const formImage = document.getElementById('form-image');
 
   // Corregido: función hora actual formato HH:MM con ceros
   function setHoraActual() {
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function actualizarRestantes() {
     const filas = document.querySelectorAll('#tabla tbody tr');
+    let hayParpadeo = false;
     filas.forEach(tr => {
       const tdRestante = tr.querySelector('.restante');
       if (!tdRestante) return;
@@ -67,10 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
       tdRestante.textContent = diffMs > 0 ? `${diffMin}m ${diffSeg}s` : '0m 0s';
       if (diffMs === 0 && !avisado) {
         tr.classList.add('parpadea');
+        hayParpadeo = true;
       } else {
         tr.classList.remove('parpadea');
       }
     });
+    // Controlar visibilidad y animación de la imagen
+    if (hayParpadeo) {
+      formImage.style.opacity = '1';
+      formImage.style.pointerEvents = 'auto';
+      formImage.classList.add('parpadea-imagen');
+    } else {
+      formImage.classList.remove('parpadea-imagen');
+      formImage.style.opacity = '0';
+      formImage.style.pointerEvents = 'none';
+    }
   }
 
   function guardarDatosLocalStorage() {
@@ -114,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (checkbox.checked) {
           tr.classList.remove('parpadea');
           guardarDatosLocalStorage();
+          actualizarRestantes();
         }
       });
       tdAvisado.appendChild(checkbox);
@@ -187,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (checkbox.checked) {
         tr.classList.remove("parpadea");
         guardarDatosLocalStorage();
+        actualizarRestantes();
       }
     });
     tdAvisado.appendChild(checkbox);
@@ -277,7 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (confirm("¿Seguro que quieres eliminar todos los registros?")) {
       tablaBody.innerHTML = "";
       localStorage.removeItem("foca_loca_datos");
+      formImage.classList.remove("parpadea-imagen");
+      formImage.style.opacity = "0";
+      formImage.style.pointerEvents = "none";
     }
   });
 
-  setInterval(actualizarRestantes, 1000);});
+  // Actualizar el parpadeo y visibilidad cada segundo
+  setInterval(actualizarRestantes, 1000);
+});
