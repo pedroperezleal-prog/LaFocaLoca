@@ -28,8 +28,8 @@ body {
 
 body {
   min-height: 100vh;
-  background-image: url("foca1.jpg");
-  background-color: #105f9a; /* Color de fondo para evitar blanco */
+  background-image: url("cumple.jpg");
+  background-color: #3b3630; /* Color de fondo para evitar blanco */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -151,7 +151,7 @@ select#color option[value="Rojo"] {
   display: flex !important;
   flex-direction: column !important; /* fuerza apilar vertical */
   gap: 30px;
-  margin: 20px 50px 50px 50px;
+  margin:5px 50px 50px 50px;
 }
 
 .tabla-section {
