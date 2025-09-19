@@ -10,6 +10,7 @@ const urlsToCache = [
   './fonts/PetitCochon.ttf',
   './app-libre.js',
   './app-cumple.js',
+  './app-index.js',
   './cumple.jpg',
   './foca.jpg',
   './foca1.jpg',

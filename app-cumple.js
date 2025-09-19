@@ -48,9 +48,7 @@ function cargarDatos() {
     tablaBody.innerHTML = "";
     objetos[color].forEach((fila) => {
       const nuevaFila = document.createElement("tr");
-      nuevaFila.innerHTML = fila
-        .map((celda) => `<td>${celda}</td>`)
-        .join("");
+      nuevaFila.innerHTML = fila.map((celda) => `<td>${celda}</td>`).join("");
       tablaBody.appendChild(nuevaFila);
     });
   });
@@ -157,12 +155,11 @@ function exportarTablaPDF(color) {
 document.addEventListener("DOMContentLoaded", () => {
   updateColorText();
 
-  cargarDatos(); // Cargar datos guardados al cargar la página
+  cargarDatos();
 
   document.getElementById("color").addEventListener("change", updateColorText);
   document.getElementById("insertarBtn").addEventListener("click", insertarFila);
 
-  // Eventos de botones de acción en las tablas
   document.querySelectorAll(".tabla-accion-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const tablaColor = btn.getAttribute("data-tabla");
@@ -185,3 +182,31 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js");
   });
 }
+
+// Sincronización y control del parpadeo de la imagen aviso
+function actualizarParpadeoImagen(hayParpadeo) {
+  const formImage = document.getElementById("form-image");
+  if (!formImage) return;
+
+  if (hayParpadeo) {
+    formImage.classList.add("parpadea-imagen");
+    formImage.style.opacity = "1";
+    formImage.style.pointerEvents = "auto";
+  } else {
+    formImage.classList.remove("parpadea-imagen");
+    formImage.style.opacity = "0";
+    formImage.style.pointerEvents = "none";
+  }
+}
+
+window.addEventListener("storage", (event) => {
+  if (event.key === "foca_loca_parpadeo") {
+    const activo = event.newValue === "true";
+    actualizarParpadeoImagen(activo);
+  }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+  const estadoAlCargar = localStorage.getItem("foca_loca_parpadeo") === "true";
+  actualizarParpadeoImagen(estadoAlCargar);
+});

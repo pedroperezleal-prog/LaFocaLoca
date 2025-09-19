@@ -251,3 +251,28 @@ thead th {
 .tabla-rojo tbody td {
   color: red;
 }
+#form-image {
+  position: absolute;
+  top: 80px; /* Alineado vertical con el formulario */
+  left: calc(170px + 600px + 500px); /* margen izquierdo + ancho formulario + espacio extra */
+  width: 140px;
+  height: auto;
+  opacity: 0; /* Oculto inicialmente */
+  pointer-events: none; /* No interfiere mientras invisble */
+  transition: opacity 0.3s ease;
+}
+
+/* Animación de parpadeo por opacidad */
+@keyframes parpadeo-imagen {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+.parpadea-imagen {
+  animation: parpadeo-imagen 1s infinite;
+  pointer-events: auto;
+}

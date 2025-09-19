@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const resetBtn = document.getElementById('resetBtn');
   const formImage = document.getElementById('form-image');
 
-  // Corregido: función hora actual formato HH:MM con ceros
   function setHoraActual() {
     const ahora = new Date();
     const hh = ahora.getHours().toString().padStart(2, '0');
@@ -75,15 +74,19 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
     // Controlar visibilidad y animación de la imagen
-    if (hayParpadeo) {
-      formImage.style.opacity = '1';
-      formImage.style.pointerEvents = 'auto';
-      formImage.classList.add('parpadea-imagen');
-    } else {
-      formImage.classList.remove('parpadea-imagen');
-      formImage.style.opacity = '0';
-      formImage.style.pointerEvents = 'none';
+    if (formImage) {
+      if (hayParpadeo) {
+        formImage.classList.add('parpadea-imagen');
+        formImage.style.opacity = '1';
+        formImage.style.pointerEvents = 'auto';
+      } else {
+        formImage.classList.remove('parpadea-imagen');
+        formImage.style.opacity = '0';
+        formImage.style.pointerEvents = 'none';
+      }
     }
+    // Sincronizar estado para otras pestañas/páginas
+    localStorage.setItem('foca_loca_parpadeo', hayParpadeo ? 'true' : 'false');
   }
 
   function guardarDatosLocalStorage() {
@@ -137,17 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarRestantes();
   }
 
-  // Inicializa con hora actual al cargar
   setHoraActual();
   actualizarHoraSalida();
   cargarDatosLocalStorage();
 
-  // Refresca hora si el input toma foco
   horaEntradaInput?.addEventListener('focus', setHoraActual);
-  // Actualiza hora de salida al cambiar tiempo de juego
   tiempoJuegoInput?.addEventListener('input', actualizarHoraSalida);
 
-  // Al pulsar "Nuevo" refresca hora actual y limpia
   nuevoBtn?.addEventListener('click', () => {
     setHoraActual();
     tiempoJuegoInput.value = '';
@@ -161,11 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
     actualizarHoraSalida();
   });
 
-  // Insertar registro en tabla
   insertarBtn?.addEventListener('click', () => {
     const id = idInput.value.trim();
     const nombre = nombreInput.value.trim();
-
     if (!id || !nombre) {
       alert("Por favor, complete los campos obligatorios: ID y Nombre.");
       return;
@@ -176,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const tiempoJuego = tiempoJuegoInput.value.trim();
     const horasalida = horaSalidaInput.value;
     const abonado = abonadoInput.value.trim();
-
     if (tiempoJuego && (isNaN(tiempoJuego) || Number(tiempoJuego) < 0)) {
       alert("El tiempo de juego debe ser un número positivo.");
       return;
@@ -206,10 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     tdAvisado.appendChild(checkbox);
     tr.appendChild(tdAvisado);
-
     tablaBody.appendChild(tr);
-
-    // Limpiar y poner hora actual y limpiar formulario
     setHoraActual();
     tiempoJuegoInput.value = '';
     horaSalidaInput.value = '';
@@ -237,7 +230,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fechaTr.appendChild(fechaTd);
     thead.parentNode.insertBefore(fechaTr, thead);
     const html = encodeURIComponent(table.outerHTML);
-    const url = "data:application/vnd.ms-excel;charset=utf-8," + html;
+    const url 
+      = "data:application/vnd.ms-excel;charset=utf-8," + html;
     const a = document.createElement("a");
     a.href = url;
     a.download = "foca_loca_registros.xls";
@@ -247,49 +241,32 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   exportPdfBtn?.addEventListener("click", () => {
-    if (!window.jspdf) {
-      alert("Librería jsPDF no cargada. Añade jsPDF y jsPDF-autotable para esta función.");
+    if(!window.jspdf) {
+      alert("jsPDF no cargado, incluye jsPDF y jsPDF-autoTable para exportar PDF.");
       return;
     }
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation: "landscape" });
+    const doc = new jsPDF({orientation: "landscape"});
     const margin = 15;
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString();
     doc.text("Listado de Registros - La Foca Loca", margin, margin);
-    doc.text(`Fecha: ${fechaStr}`, margin, margin + 8);
+    doc.text(`Fecha: ${fechaStr}`, margin, margin+8);
     doc.autoTable({
       html: "#tabla",
       startY: margin + 20,
-      margin: { left: margin, right: margin, top: margin, bottom: margin },
-      styles: {
-        overflow: "linebreak",
-        lineWidth: 0.3,
-        lineColor: [0, 0, 0],
-        fontSize: 10,
-      },
-      headStyles: {
-        fillColor: [230, 230, 250],
-        textColor: [0, 0, 0],
-        lineWidth: 0.7,
-        lineColor: [0, 0, 0],
-        fontStyle: "bold",
-      },
-      bodyStyles: {
-        fillColor: [255, 255, 255],
-        lineWidth: 0.3,
-        lineColor: [0, 0, 0],
-      },
-      alternateRowStyles: {
-        fillColor: [245, 245, 245],
-      },
-      pageBreak: "auto",
+      margin: {left: margin,right: margin,top: margin,bottom: margin},
+      styles: {fontSize:10,overflow:"linebreak",lineWidth:0.3,lineColor:[0,0,0]},
+      headStyles: {fillColor:[230,230,250],textColor:[0,0,0],lineWidth:0.7,lineColor:[0,0,0],fontStyle:"bold"},
+      bodyStyles: {fillColor:[255,255,255],lineWidth:0.3,lineColor:[0,0,0]},
+      alternateRowStyles: {fillColor:[245,245,245]},
+      pageBreak:"auto"
     });
     doc.save("foca_loca_registros.pdf");
   });
 
   resetBtn?.addEventListener("click", () => {
-    if (confirm("¿Seguro que quieres eliminar todos los registros?")) {
+    if(confirm("¿Seguro quieres eliminar todos los registros?")) {
       tablaBody.innerHTML = "";
       localStorage.removeItem("foca_loca_datos");
       formImage.classList.remove("parpadea-imagen");
@@ -298,6 +275,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Actualizar el parpadeo y visibilidad cada segundo
+  // Actualizar parpadeo y visibilidad cada segundo
   setInterval(actualizarRestantes, 1000);
+
+  // Sincronizar parpadeo entre pestañas/páginas
+  window.addEventListener("storage", (event) => {
+    if(event.key === "foca_loca_parpadeo") {
+      const activo = event.newValue === "true";
+      if(formImage) {
+        if(activo) {
+          formImage.classList.add("parpadea-imagen");
+          formImage.style.opacity = "1";
+          formImage.style.pointerEvents = "auto";
+        } else {
+          formImage.classList.remove("parpadea-imagen");
+          formImage.style.opacity = "0";
+          formImage.style.pointerEvents = "none";
+        }
+      }
+    }
+  });
+
+  // Inicializar estado parpadeo al cargar página
+  window.addEventListener("DOMContentLoaded", () => {
+    const estadoAlCargar = localStorage.getItem("foca_loca_parpadeo") === "true";
+    if(formImage) {
+      if(estadoAlCargar) {
+        formImage.classList.add("parpadea-imagen");
+        formImage.style.opacity = "1";
+        formImage.style.pointerEvents = "auto";
+      } else {
+        formImage.classList.remove("parpadea-imagen");
+        formImage.style.opacity = "0";
+        formImage.style.pointerEvents = "none";
+      }
+    }
+  });
 });
