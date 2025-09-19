@@ -1,7 +1,7 @@
 /* Fuente personalizada */
 @font-face {
-  font-family: 'PetitCochon';
-  src: url('./fonts/PetitCochon.ttf') format('truetype');
+  font-family: "PetitCochon";
+  src: url("./fonts/PetitCochon.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
@@ -10,14 +10,16 @@ h1 {
   color: yellow;
   text-align: left;
   font-size: clamp(2em, 10vw, 6em);
-  font-family: 'PetitCochon', cursive, sans-serif;
+  font-family: "PetitCochon", cursive, sans-serif;
   font-weight: 300;
   margin-left: 5vw; /* margen izquierdo proporcional al 5% del ancho de la ventana */
 }
 
 /* Estilos generales */
-html, body, * {
-  font-family: 'PetitCochon', cursive, sans-serif;
+html,
+body,
+* {
+  font-family: "PetitCochon", cursive, sans-serif;
   font-weight: 300;
   font-size: 1.1em;
   -webkit-font-smoothing: antialiased;
@@ -26,10 +28,10 @@ html, body, * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
-html, body {
+html,
+body {
   height: 100%;
   overflow: hidden; /* Sin scroll visible */
 }
@@ -40,7 +42,7 @@ body.index {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-color:  #105f9a;
+  background-color: #105f9a;
   height: 100%;
   margin: 0;
 }
@@ -52,7 +54,7 @@ footer {
   background: transparent;
   color: yellow;
   padding: 10px 20px;
-  font-family: 'PetitCochon', cursive, sans-serif;
+  font-family: "PetitCochon", cursive, sans-serif;
   font-weight: 300;
   font-size: 1em;
   z-index: 1000;
@@ -93,7 +95,7 @@ nav button:hover img {
 nav button .titulo-foto {
   color: yellow;
   margin-top: 8px;
-  font-family: 'PetitCochon', cursive, sans-serif;
+  font-family: "PetitCochon", cursive, sans-serif;
   font-weight: 300;
   font-size: 1.7em;
   user-select: none;
@@ -151,7 +153,9 @@ nav button img {
 #form-image {
   position: absolute;
   top: 80px; /* Alineado vertical con el formulario */
-  left: calc(170px + 600px + 500px); /* margen izquierdo + ancho formulario + espacio extra */
+  left: calc(
+    170px + 600px + 500px
+  ); /* margen izquierdo + ancho formulario + espacio extra */
   width: 140px;
   height: auto;
   opacity: 0; /* Oculto inicialmente */
