@@ -154,7 +154,7 @@ nav button img {
   position: absolute;
   top: 80px; /* Alineado vertical con el formulario */
   left: calc(
-  170px + 600px + 300px
+  170px + 400px + 300px
 ); /* margen izquierdo + ancho formulario + espacio extra */
   width: 140px;
   height: auto;
