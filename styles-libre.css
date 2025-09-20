@@ -27,7 +27,7 @@ body.libre {
   background-color: #40c4e6;
   min-height: 100vh;
   background-image: url("focaloca1.jpg");
-  background-color: #105f9a;
+  background-color: #152259;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -214,8 +214,8 @@ main {
 
 #form-image {
   position: absolute;
-  top: 80px; /* Alineado vertical con el formulario */
-  left: calc(170px + 600px + 500px); /* margen izquierdo + ancho formulario + espacio extra */
+  top: 10px; /* Alineado vertical con el formulario */
+  margin-left: 5px; /* margen izquierdo + ancho formulario + espacio extra */
   width: 140px;
   height: auto;
   opacity: 0; /* Oculto inicialmente */

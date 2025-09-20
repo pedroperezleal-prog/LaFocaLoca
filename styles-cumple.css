@@ -253,8 +253,8 @@ thead th {
 }
 #form-image {
   position: absolute;
-  top: 80px; /* Alineado vertical con el formulario */
-  left: calc(170px + 600px + 500px); /* margen izquierdo + ancho formulario + espacio extra */
+  top: 20px; /* Alineado vertical con el formulario */
+  margin-left: 5px; /* margen izquierdo + ancho formulario + espacio extra */
   width: 140px;
   height: auto;
   opacity: 0; /* Oculto inicialmente */

@@ -8,8 +8,8 @@
 
 h1 {
   color: yellow;
-  text-align: left;
-  font-size: clamp(2em, 10vw, 6em);
+  text-align: center;
+  font-size: clamp(1em, 5vw, 6em);
   font-family: "PetitCochon", cursive, sans-serif;
   font-weight: 300;
   margin-left: 5vw; /* margen izquierdo proporcional al 5% del ancho de la ventana */
@@ -154,8 +154,8 @@ nav button img {
   position: absolute;
   top: 80px; /* Alineado vertical con el formulario */
   left: calc(
-    170px + 600px + 500px
-  ); /* margen izquierdo + ancho formulario + espacio extra */
+  170px + 600px + 300px
+); /* margen izquierdo + ancho formulario + espacio extra */
   width: 140px;
   height: auto;
   opacity: 0; /* Oculto inicialmente */
