@@ -8,7 +8,7 @@
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#d9ff00" />
     <link rel="icon" href="icon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="styles-libre.css" />
+    <link rel="stylesheet" href="styles-cafe.css" />
     <!-- Librerías jsPDF y jsPDF-autotable -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
@@ -45,11 +45,11 @@
         <button
           type="button"
           class="btn-accion"
-          onclick="location.href='cafe.html'"
-          aria-label="Ir a Cafetería"
-          title="Ir a Cafetería"
+          onclick="location.href='libre.html'"
+          aria-label="Ir a Juego Libre"
+          title="Ir a Juego Libre"
         >
-          Cafetería
+          Juego Libre
         </button>
       </div>
 
@@ -153,25 +153,8 @@
       aria-hidden="true"
       style="opacity: 0; pointer-events: none;" />
       <section>
-        <table id="tabla" aria-label="Listado de registros" role="grid">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">COLOR</th>
-              <th scope="col">NOMBRE</th>
-              <th scope="col">TELÉFONO</th>
-              <th scope="col">HORA ENT.</th>
-              <th scope="col">T.JUEGO</th>
-              <th scope="col">HORA SALIDA</th>
-              <th scope="col">RESTANTE</th>
-              <th scope="col">PAGADO</th>
-              <th scope="col">AVISADO</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </section>
+        
     </main>
-    <script src="app-libre.js" defer></script>
+    <script src="app-cafe.js" defer></script>
   </body>
 </html>
