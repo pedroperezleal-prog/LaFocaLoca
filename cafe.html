@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>La Foca Loca - Formulario y Registros</title>
+    <title>La Foca Loca - Cafetería</title>
     <link rel="apple-touch-icon" href="icon-192.png" />
     <link rel="manifest" href="manifest.json" />
     <meta name="theme-color" content="#d9ff00" />
@@ -40,8 +40,6 @@
         >
           Cumpleaños
         </button>
-      
-      </button>
         <button
           type="button"
           class="btn-accion"
@@ -53,14 +51,14 @@
         </button>
       </div>
 
-      <section id="form-container" aria-label="Formulario de registro">
+      <section id="form-container" aria-label="Formulario de pedidos cafetería">
         <div class="botones-reset-nuevo">
           <button
             id="nuevoBtn"
             class="btn-accion"
             type="button"
-            aria-label="Poner hora actual en hora de entrada"
-            title="Poner hora actual en hora de entrada"
+            aria-label="Nuevo pedido"
+            title="Nuevo pedido"
           >
             Nuevo
           </button>
@@ -74,18 +72,7 @@
             Reset tabla
           </button>
         </div>
-        <div class="input-group">
-          <label for="id">ID:</label>
-          <input type="number" id="id" name="id" autocomplete="off" required />
-        </div>
-        <div class="input-group">
-          <label for="color">COLOR:</label>
-          <select id="color" name="color" required>
-            <option value="Azul" style="color: blue;">Azul</option>
-            <option value="Verde" style="color: green;">Verde</option>
-            <option value="Rojo" style="color: red;">Rojo</option>
-          </select>
-        </div>
+
         <div class="input-group">
           <label for="nombre">NOMBRE:</label>
           <input
@@ -96,26 +83,86 @@
             required
           />
         </div>
-        <div class="input-group">
-          <label for="telefono">TELÉFONO:</label>
-          <input type="tel" id="telefono" name="telefono" autocomplete="tel" />
+
+        <!-- ===== MENÚS DESPLEGABLES ===== -->
+
+        <!-- Bebidas -->
+        <div class="accordion-item">
+          <button
+            type="button"
+            class="accordion-header"
+            data-target="#contenido-bebidas"
+          >
+            Bebidas
+          </button>
+          <div id="contenido-bebidas" class="accordion-content">
+            <div class="accordion-inner input-group">
+              <label for="bebidas">Seleccionar bebida:</label>
+              <select id="bebidas" name="bebidas">
+                <option value="">-- Elige una opción --</option>
+                <option value="Refrescos">Refrescos</option>
+                <option value="Bebidas calientes">Bebidas calientes</option>
+                <option value="Zumos, Batidos">Zumos, Batidos</option>
+                <option value="Agua">Agua</option>
+                <option value="Combinados 5">Combinados 5</option>
+                <option value="Combinados 6">Combinados 6</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="input-group">
-          <label for="horaentrada">HORA ENTRADA:</label>
-          <input type="time" id="horaentrada" name="horaentrada" />
+
+        <!-- Packs -->
+        <div class="accordion-item">
+          <button
+            type="button"
+            class="accordion-header"
+            data-target="#contenido-packs"
+          >
+            Packs
+          </button>
+          <div id="contenido-packs" class="accordion-content">
+            <div class="accordion-inner input-group">
+              <label for="packs">Seleccionar pack:</label>
+              <select id="packs" name="packs">
+                <option value="">-- Elige una opción --</option>
+                <option value="Pack Rojo">Pack Rojo</option>
+                <option value="Pack Azul">Pack Azul</option>
+                <option value="Pack Verde">Pack Verde</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="input-group">
-          <label for="tiempoJuego">TIEMPO DE JUEGO (minutos):</label>
-          <input type="number" id="tiempoJuego" name="tiempoJuego" min="0" />
+
+        <!-- Picoteo -->
+        <div class="accordion-item">
+          <button
+            type="button"
+            class="accordion-header"
+            data-target="#contenido-picoteo"
+          >
+            Picoteo
+          </button>
+          <div id="contenido-picoteo" class="accordion-content">
+            <div class="accordion-inner input-group">
+              <label for="picoteo">Seleccionar picoteo:</label>
+              <select id="picoteo" name="picoteo">
+                <option value="">-- Elige una opción --</option>
+                <option value="Mini pastelitos 8 uds">
+                  Mini pastelitos 8 uds
+                </option>
+                <option value="Bollería 12 uds">Bollería 12 uds</option>
+                <option value="Montaditos 12 uds">Montaditos 12 uds</option>
+                <option value="Saladitos 10 uds">Saladitos 10 uds</option>
+                <option value="Sándwich Mixto">Sándwich Mixto</option>
+                <option value="Sandwich Mixto Mini">Sandwich Mixto Mini</option>
+                <option value="Piquislavis">Piquislavis</option>
+              </select>
+            </div>
+          </div>
         </div>
-        <div class="input-group">
-          <label for="horasalida">HORA DE SALIDA:</label>
-          <input type="time" id="horasalida" name="horasalida" readonly />
-        </div>
-        <div class="input-group">
-          <label for="abonado">ABONADO (€):</label>
-          <input type="number" id="abonado" name="abonado" min="0" step="0.01" />
-        </div>
+
+        <!-- ===== FIN MENÚS DESPLEGABLES ===== -->
+
         <div class="botones-accion">
           <button
             id="insertarBtn"
@@ -146,15 +193,30 @@
           </button>
         </div>
       </section>
+
       <img
-      id="form-image"
-      src="aviso.png"
-      alt="Imagen a la derecha"
-      aria-hidden="true"
-      style="opacity: 0; pointer-events: none;" />
+        id="form-image"
+        src="aviso.png"
+        alt="Imagen a la derecha"
+        aria-hidden="true"
+        style="opacity: 0; pointer-events: none"
+      />
+
       <section>
-        
+        <table id="tabla" aria-label="Listado de pedidos cafetería" role="grid">
+          <thead>
+            <tr>
+              <th scope="col">Nombre</th>
+              <th scope="col">Bebida</th>
+              <th scope="col">Pack</th>
+              <th scope="col">Picoteo</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
     </main>
+
     <script src="app-cafe.js" defer></script>
   </body>
 </html>

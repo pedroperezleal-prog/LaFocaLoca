@@ -4,6 +4,8 @@
   font-weight: 300;
   font-style: normal;
 }
+
+/* Reset y tipografía */
 html,
 body,
 * {
@@ -17,18 +19,22 @@ body,
   padding: 0;
   box-sizing: border-box;
 }
+
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
+
+/* Fondo cafetería: mismo esquema que libre,
+   solo cambia la imagen y la escala */
 body.libre {
   background-color: #40c4e6;
   min-height: 100vh;
   background-image: url("cafeteria.jpeg");
   background-color: #152259;
-  background-size: cover;
+  background-size: 40% auto;
   background-repeat: no-repeat;
   background-position: center center;
   height: 100vh;
@@ -37,18 +43,8 @@ body.libre {
   color: yellow;
   text-shadow: 0 0 8px #00000088;
 }
-@keyframes parpadeo-rojo {
-  0%,
-  100% {
-    background-color: transparent;
-  }
-  50% {
-    background-color: #ff4d4d;
-  }
-}
-.parpadea {
-  animation: parpadeo-rojo 1s infinite;
-}
+
+/* Botones superiores de navegación */
 .top-right-buttons {
   position: fixed;
   top: 20px;
@@ -57,6 +53,7 @@ body.libre {
   gap: 10px;
   z-index: 1000;
 }
+
 .btn-accion {
   background-color: #1cbaf9;
   color: #ffff00;
@@ -73,29 +70,19 @@ body.libre {
   font-family: "PetitCochon", cursive, sans-serif;
   text-shadow: 0 0 4px #00000088;
 }
+
 .btn-accion:hover,
 .btn-accion:focus {
   background-color: #0066ff;
   color: white;
   outline: none;
 }
-.botones-reset-nuevo {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 15px;
-  align-items: center;
-  width: 100%;
-}
+
+/* Contenedor principal del formulario */
 #form-container {
   max-width: 600px;
-  margin: 80px 20px 20px 170px; /* margen izquierdo para empujar a la derecha */
-  background: rgba(
-    0,
-    0,
-    0,
-    0.45
-  ); /* fondo semitransparente para mejor visibilidad */
+  margin: 80px 20px 20px 170px;
+  background: rgba(0, 0, 0, 0.45);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 16px #f9d71c;
@@ -105,11 +92,31 @@ body.libre {
   color: yellow;
   text-shadow: 0 0 6px #000000cc;
 }
+
+/* Bloques de botones Nuevo / Reset / Insertar / Excel / PDF */
+.botones-reset-nuevo {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+  align-items: center;
+  width: 100%;
+}
+
+.botones-accion {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Inputs generales */
 .input-group {
   margin-bottom: 12px;
   width: 100%;
   max-width: 350px;
 }
+
 label {
   display: block;
   font-weight: 300;
@@ -117,10 +124,10 @@ label {
   color: yellow;
   text-shadow: 0 0 4px #000000cc;
 }
+
 input[type="number"],
 input[type="text"],
 input[type="tel"],
-input[type="time"],
 select {
   color: yellow;
   text-transform: uppercase;
@@ -130,30 +137,74 @@ select {
   font-size: 1.1em;
   border-radius: 5px;
   border: 2px solid #00c3ff;
-  background: rgba(
-    0,
-    0,
-    0,
-    0.3
-  ); /* fondo oscuro semitransparente para inputs */
+  background: rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   text-shadow: none;
 }
+
 input::placeholder,
 select::placeholder {
   color: yellow;
   opacity: 1;
   text-shadow: none;
 }
-select#color option[value="Azul"] {
-  color: blue;
+
+/* Imagen aviso a la derecha */
+main {
+  position: relative;
 }
-select#color option[value="Verde"] {
-  color: green;
+
+#form-image {
+  position: absolute;
+  top: 10px;
+  margin-left: 5px;
+  width: 140px;
+  height: auto;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
-select#color option[value="Rojo"] {
-  color: red;
+
+/* Acordeón (desplegables) */
+.accordion-item {
+  width: 100%;
+  max-width: 350px;
+  margin-bottom: 10px;
 }
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background-color: #1cbaf9;
+  color: #ffff00;
+  border: 2px solid #00c3ff;
+  border-radius: 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1.1em;
+  text-shadow: 0 0 4px #00000088;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.accordion-header:hover,
+.accordion-header:focus,
+.accordion-header.activo {
+  background-color: #0066ff;
+  color: white;
+  outline: none;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-inner {
+  padding-top: 8px;
+}
+
+/* === TABLA DE DATOS (MISMO ESTILO QUE LIBRE) === */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -161,6 +212,7 @@ table {
   font-weight: 300;
   font-family: "PetitCochon", cursive, sans-serif;
 }
+
 thead th {
   background-color: #40c4e6;
   color: yellow;
@@ -169,81 +221,62 @@ thead th {
   text-align: center;
   text-shadow: 0 0 3px #00000088;
 }
+
 tbody td {
   border: 1px solid #00c3ff;
   padding: 6px 8px;
   text-align: center;
   color: #001a4d;
 }
+
 #tabla td,
 #tabla th {
-  color: yellow; /* El color que prefieras */
+  color: yellow;
 }
+
+/* Responsive */
 @media (max-width: 768px) {
   #form-container {
     margin: 80px 10px 20px 10px;
     max-width: 100%;
   }
+
   .input-group {
     max-width: 100%;
   }
+
   table {
     font-size: 0.9em;
   }
+
   .top-right-buttons {
     top: 10px;
     right: 10px;
   }
+
   .top-right-buttons .btn-accion {
     font-size: 1em;
     padding: 8px 15px;
   }
+
   .botones-reset-nuevo {
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 10px;
   }
+
   .botones-reset-nuevo button {
     margin-bottom: 5px;
   }
 }
+
 @media (max-width: 480px) {
   h1 {
     font-size: 1.8em;
     margin: 15px 10px;
   }
+
   table {
     font-size: 0.8em;
   }
-}
-
-/* Estilo nuevo para posicionar la imagen fuera del formulario a la derecha */
-main {
-  position: relative;
-}
-
-#form-image {
-  position: absolute;
-  top: 10px; /* Alineado vertical con el formulario */
-  margin-left: 5px; /* margen izquierdo + ancho formulario + espacio extra */
-  width: 140px;
-  height: auto;
-  opacity: 0; /* Oculto inicialmente */
-  pointer-events: none; /* No interfiere mientras invisble */
-  transition: opacity 0.3s ease;
-}
-
-/* Animación de parpadeo por opacidad */
-@keyframes parpadeo-imagen {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-.parpadea-imagen {
-  animation: parpadeo-imagen 1s infinite;
-  pointer-events: auto;
 }
