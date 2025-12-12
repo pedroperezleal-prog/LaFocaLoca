@@ -11,6 +11,32 @@ document.addEventListener('DOMContentLoaded', () => {
   const exportPdfBtn = document.getElementById('exportPdf');
   const tablaBody = document.querySelector('#tabla tbody');
 
+  /* ===== Precios según carta ===== */
+  const PRECIOS = {
+    Bebidas: {
+      'Refrescos': 2.0,
+      'Bebidas calientes': 1.8,
+      'Zumos, Batidos': 1.5,
+      'Agua': 1.5,
+      'Cubata 5€': 5.0,
+      'Cubata 6€': 6.0
+    },
+    Packs: {
+      'Pack Rojo': 30.0,
+      'Pack Azul': 30.0,
+      'Pack Verde': 30.0
+    },
+    Picoteo: {
+      'Mini pastelitos 8 uds': 10.0,
+      'Bollería 12 uds': 12.0,
+      'Montaditos 12 uds': 15.0,
+      'Bandeja Saladitos 10 uds': 8.0,
+      'Sandwich Mixto 1 ud': 2.5,
+      'Sandwich Mixto 16 uds': 20.0,
+      'Bandeja Piquislavis': 5.0
+    }
+  };
+
   /* ===== Acordeones: abrir/cerrar ===== */
   const headers = document.querySelectorAll('.accordion-header');
 
@@ -22,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const isOpen = content.classList.contains('abierto');
 
-      // Cerrar todos
       document.querySelectorAll('.accordion-content').forEach((c) => {
         c.classList.remove('abierto');
         c.style.maxHeight = '0px';
@@ -31,13 +56,119 @@ document.addEventListener('DOMContentLoaded', () => {
         h.classList.remove('activo');
       });
 
-      // Abrir el pulsado si estaba cerrado
       if (!isOpen) {
         content.classList.add('abierto');
         content.style.maxHeight = content.scrollHeight + 'px';
         btn.classList.add('activo');
       }
     });
+  });
+
+  /* ===== Utilidades ===== */
+  function formatearEuros(num) {
+    return num.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function pedirCantidadYInsertar(categoria, producto) {
+    const nombre = (nombreInput.value || '').trim();
+    if (!nombre) {
+      alert('Escribe un nombre antes de seleccionar un producto.');
+      return;
+    }
+    if (!producto) return;
+
+    const precio = PRECIOS[categoria][producto];
+    if (typeof precio !== 'number') {
+      alert('No se ha encontrado precio para ese producto.');
+      return;
+    }
+
+    let cantidadStr = prompt(`¿Cantidad para "${producto}"?`, '1');
+    if (cantidadStr === null) return;
+    let cantidad = parseInt(cantidadStr, 10);
+    if (isNaN(cantidad) || cantidad <= 0) {
+      alert('La cantidad debe ser un número positivo.');
+      return;
+    }
+
+    const total = precio * cantidad;
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${nombre}</td>
+      <td>${categoria}</td>
+      <td>${producto}</td>
+      <td>${cantidad}</td>
+      <td>${formatearEuros(precio)}</td>
+      <td>${formatearEuros(total)}</td>
+    `;
+    tablaBody.appendChild(tr);
+    guardarDatos();
+
+    if (categoria === 'Bebidas') bebidaSelect.value = '';
+    if (categoria === 'Packs') packSelect.value = '';
+    if (categoria === 'Picoteo') picoteoSelect.value = '';
+  }
+
+  /* ===== Sumar columna Total e insertar/actualizar fila TOTAL ===== */
+  function sumarColumnaTotalEnTabla() {
+    let suma = 0;
+    const filas = document.querySelectorAll('#tabla tbody tr');
+
+    filas.forEach((tr) => {
+      const celdaTotal = tr.querySelector('td:last-child');
+      if (!celdaTotal) return;
+      const texto = celdaTotal.textContent
+        .replace(' €', '')
+        .replace('.', '')
+        .replace(',', '.');
+      const valor = parseFloat(texto);
+      if (!isNaN(valor)) suma += valor;
+    });
+
+    // Buscar si ya existe una fila de TOTAL
+    let filaTotal = null;
+    if (filas.length > 0) {
+      const ultima = filas[filas.length - 1];
+      const primeraCelda = ultima.querySelector('td');
+      if (primeraCelda && primeraCelda.textContent === 'TOTAL') {
+        filaTotal = ultima;
+      }
+    }
+
+    if (!filaTotal) {
+      filaTotal = document.createElement('tr');
+      filaTotal.innerHTML = `
+        <td>TOTAL</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>${formatearEuros(suma)}</td>
+      `;
+      tablaBody.appendChild(filaTotal);
+    } else {
+      const celdaImporte = filaTotal.querySelector('td:last-child');
+      celdaImporte.textContent = formatearEuros(suma);
+    }
+
+    guardarDatos();
+  }
+
+  /* ===== Eventos de selección en los desplegables ===== */
+  bebidaSelect?.addEventListener('change', () => {
+    const valor = bebidaSelect.value;
+    if (valor) pedirCantidadYInsertar('Bebidas', valor);
+  });
+
+  packSelect?.addEventListener('change', () => {
+    const valor = packSelect.value;
+    if (valor) pedirCantidadYInsertar('Packs', valor);
+  });
+
+  picoteoSelect?.addEventListener('change', () => {
+    const valor = picoteoSelect.value;
+    if (valor) pedirCantidadYInsertar('Picoteo', valor);
   });
 
   /* ===== LocalStorage: guardar/cargar tabla ===== */
@@ -63,6 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${fila[1] || ''}</td>
         <td>${fila[2] || ''}</td>
         <td>${fila[3] || ''}</td>
+        <td>${fila[4] || ''}</td>
+        <td>${fila[5] || ''}</td>
       `;
       tablaBody.appendChild(tr);
     });
@@ -79,34 +212,9 @@ document.addEventListener('DOMContentLoaded', () => {
     nombreInput.focus();
   });
 
-  /* ===== Insertar en tabla ===== */
+  /* ===== Insertar: calcular y mostrar fila TOTAL ===== */
   insertarBtn?.addEventListener('click', () => {
-    const nombre = nombreInput.value.trim();
-    const bebida = bebidaSelect.value.trim();
-    const pack = packSelect.value.trim();
-    const picoteo = picoteoSelect.value.trim();
-
-    if (!nombre) {
-      alert('Por favor, escribe un nombre.');
-      return;
-    }
-
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${nombre}</td>
-      <td>${bebida}</td>
-      <td>${pack}</td>
-      <td>${picoteo}</td>
-    `;
-    tablaBody.appendChild(tr);
-
-    guardarDatos();
-
-    nombreInput.value = '';
-    bebidaSelect.value = '';
-    packSelect.value = '';
-    picoteoSelect.value = '';
-    nombreInput.focus();
+    sumarColumnaTotalEnTabla();
   });
 
   /* ===== Reset tabla ===== */
@@ -142,20 +250,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({ orientation: 'landscape' });
+    const doc = new jsPDF({ orientation: 'portrait' });
     const margin = 15;
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString();
 
-    doc.text('Pedidos Cafetería - La Foca Loca', margin, margin);
+    doc.text('Cafetería - La Foca Loca', margin, margin);
     doc.text(`Fecha: ${fechaStr}`, margin, margin + 8);
 
     doc.autoTable({
       html: '#tabla',
-      startY: margin + 20,
+      startY: margin + 16,
       margin: { left: margin, right: margin, top: margin, bottom: margin }
     });
 
-    doc.save('cafeteria_pedidos.pdf');
+    doc.save('cafeteria_ticket.pdf');
   });
 });

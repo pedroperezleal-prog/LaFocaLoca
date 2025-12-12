@@ -27,16 +27,15 @@ body {
   padding: 0;
 }
 
-/* Fondo cafetería: mismo esquema que libre,
-   solo cambia la imagen y la escala */
+/* Fondo cafetería */
 body.libre {
   background-color: #40c4e6;
   min-height: 100vh;
   background-image: url("cafeteria.jpeg");
   background-color: #152259;
-  background-size: 40% auto;
+  background-size: 55% auto;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: right center;
   height: 100vh;
   margin: 0;
   padding: 0;
@@ -204,37 +203,80 @@ main {
   padding-top: 8px;
 }
 
-/* === TABLA DE DATOS (MISMO ESTILO QUE LIBRE) === */
+/* === TABLA TIPO TICKET === */
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 0 20px 40px 20px;
   font-weight: 300;
   font-family: "PetitCochon", cursive, sans-serif;
+  background: #ffffffdd;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
 thead th {
-  background-color: #40c4e6;
-  color: yellow;
-  padding: 8px;
-  border: 1px solid #00c3ff;
+  background-color: #152259;
+  color: #f9d71c;
+  padding: 6px 8px;
+  border-bottom: 2px solid #00c3ff;
   text-align: center;
   text-shadow: 0 0 3px #00000088;
+  font-size: 0.9em;
 }
 
 tbody td {
-  border: 1px solid #00c3ff;
-  padding: 6px 8px;
+  border-bottom: 1px dashed #00c3ff;
+  padding: 4px 6px;
   text-align: center;
   color: #001a4d;
+  font-size: 0.9em;
 }
 
-#tabla td,
-#tabla th {
-  color: yellow;
+tbody tr:last-child td {
+  border-bottom: none;
+}
+/* Ancho de columnas de la tabla ticket */
+#tabla th:nth-child(1),
+#tabla td:nth-child(1) {
+  width: 25%; /* Nombre */
 }
 
-/* Responsive */
+#tabla th:nth-child(2),
+#tabla td:nth-child(2) {
+  width: 15%; /* Categoría */
+}
+
+#tabla th:nth-child(3),
+#tabla td:nth-child(3) {
+  width: 30%; /* Producto */
+}
+
+#tabla th:nth-child(4),
+#tabla td:nth-child(4) {
+  width: 10%; /* Cantidad */
+}
+
+#tabla th:nth-child(5),
+#tabla td:nth-child(5) {
+  width: 10%; /* P. Uni */
+}
+
+#tabla th:nth-child(6),
+#tabla td:nth-child(6) {
+  width: 10%; /* Total */
+}
+
+/* columnas más estrechas para ticket */
+#tabla td:nth-child(4),
+#tabla th:nth-child(4),
+#tabla td:nth-child(5),
+#tabla th:nth-child(5),
+#tabla td:nth-child(6),
+#tabla th:nth-child(6) {
+  width: 70px;
+}
+
 @media (max-width: 768px) {
   #form-container {
     margin: 80px 10px 20px 10px;
@@ -246,7 +288,7 @@ tbody td {
   }
 
   table {
-    font-size: 0.9em;
+    font-size: 0.85em;
   }
 
   .top-right-buttons {

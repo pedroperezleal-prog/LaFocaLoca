@@ -57,8 +57,8 @@
             id="nuevoBtn"
             class="btn-accion"
             type="button"
-            aria-label="Nuevo pedido"
-            title="Nuevo pedido"
+            aria-label="Nuevo ticket (limpiar formulario)"
+            title="Nuevo ticket (limpiar formulario)"
           >
             Nuevo
           </button>
@@ -104,8 +104,8 @@
                 <option value="Bebidas calientes">Bebidas calientes</option>
                 <option value="Zumos, Batidos">Zumos, Batidos</option>
                 <option value="Agua">Agua</option>
-                <option value="Combinados 5">Combinados 5</option>
-                <option value="Combinados 6">Combinados 6</option>
+                <option value="Cubata 5€">Cubata 5€</option>
+                <option value="Cubata 6€">Cubata 6€</option>
               </select>
             </div>
           </div>
@@ -152,10 +152,14 @@
                 </option>
                 <option value="Bollería 12 uds">Bollería 12 uds</option>
                 <option value="Montaditos 12 uds">Montaditos 12 uds</option>
-                <option value="Saladitos 10 uds">Saladitos 10 uds</option>
-                <option value="Sándwich Mixto">Sándwich Mixto</option>
-                <option value="Sandwich Mixto Mini">Sandwich Mixto Mini</option>
-                <option value="Piquislavis">Piquislavis</option>
+                <option value="Bandeja Saladitos 10 uds">
+                  Bandeja Saladitos 10 uds
+                </option>
+                <option value="Sandwich Mixto 1 ud">Sandwich Mixto 1 ud</option>
+                <option value="Sandwich Mixto 16 uds">
+                  Sandwich Mixto 16 uds
+                </option>
+                <option value="Bandeja Piquislavis">Bandeja Piquislavis</option>
               </select>
             </div>
           </div>
@@ -168,8 +172,8 @@
             id="insertarBtn"
             class="btn-accion"
             type="button"
-            aria-label="Insertar datos en la tabla"
-            title="Insertar datos en la tabla"
+            aria-label="Insertar línea manual (si se usa)"
+            title="Insertar línea manual"
           >
             Insertar
           </button>
@@ -203,13 +207,15 @@
       />
 
       <section>
-        <table id="tabla" aria-label="Listado de pedidos cafetería" role="grid">
+        <table id="tabla" aria-label="Ticket cafetería" role="grid">
           <thead>
             <tr>
               <th scope="col">Nombre</th>
-              <th scope="col">Bebida</th>
-              <th scope="col">Pack</th>
-              <th scope="col">Picoteo</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Cant.</th>
+              <th scope="col">P. Uni</th>
+              <th scope="col">Total</th>
             </tr>
           </thead>
           <tbody></tbody>
