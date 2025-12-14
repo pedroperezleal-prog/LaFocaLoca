@@ -68,7 +68,7 @@ nav {
   align-items: center;
   padding: 15px;
   margin-left: 100px;
-  margin-top: 60px;
+  margin-top: 180px;
 }
 
 /* Botones con imagen y título centrado debajo */
@@ -154,8 +154,8 @@ nav button img {
   position: absolute;
   top: 80px; /* Alineado vertical con el formulario */
   left: calc(
-  170px + 400px + 300px
-); /* margen izquierdo + ancho formulario + espacio extra */
+    170px + 400px + 300px
+  ); /* margen izquierdo + ancho formulario + espacio extra */
   width: 140px;
   height: auto;
   opacity: 0; /* Oculto inicialmente */

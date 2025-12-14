@@ -27,6 +27,11 @@ const urlsToCache = [
   './arti.jpeg',
   './campana.jpg',
   './campana.png',
+  './cafe.html',
+  './styles-cafe.css',
+  './cafeteria.jpeg',
+  './app-cafe.js'
+  
 ];
 
 // Instalación y precacheo

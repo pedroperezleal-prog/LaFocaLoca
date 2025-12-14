@@ -29,15 +29,15 @@ body {
 body {
   min-height: 100vh;
   background-image: url("cumple.jpg");
-  background-color: #3b3630; /* Color de fondo para evitar blanco */
+  background-color: #b37435; /* Color de fondo para evitar blanco */
   background-size: 50%;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: right center;
   height: 100vh;
   margin: 0;
   padding: 0;
   color: yellow;
-  text-shadow: 0 0 8px #00000088;
+  text-shadow: 0 0 20px #00000088;
 }
 
 .top-right-buttons {
@@ -84,7 +84,7 @@ body {
 
 #form-container {
   max-width: 600px;
-  margin: 80px 20px 20px 400px;
+  margin: 80px 20px 20px 200px;
   background: rgba(0, 0, 0, 0.45);
   padding: 20px;
   border-radius: 8px;

@@ -46,26 +46,33 @@ document.addEventListener('DOMContentLoaded', () => {
   function actualizarRestantes() {
     const filas = document.querySelectorAll('#tabla tbody tr');
     let hayParpadeo = false;
+
     filas.forEach(tr => {
       const tdRestante = tr.querySelector('.restante');
       if (!tdRestante) return;
+
       const horasalida = tdRestante.getAttribute('data-horasalida');
       if (!horasalida) {
         tdRestante.textContent = '';
         tr.classList.remove('parpadea');
         return;
       }
+
       const checkboxAvisado = tr.querySelector('td:last-child input[type="checkbox"]');
       const avisado = checkboxAvisado && checkboxAvisado.checked;
+
       const ahora = new Date();
       const [hS, mS] = horasalida.split(':').map(Number);
       const salida = new Date(ahora);
       salida.setHours(hS, mS, 0, 0);
+
       let diffMs = salida - ahora;
       if (diffMs < 0) diffMs = 0;
+
       const diffMin = Math.floor(diffMs / 60000);
       const diffSeg = Math.floor((diffMs % 60000) / 1000);
       tdRestante.textContent = diffMs > 0 ? `${diffMin}m ${diffSeg}s` : '0m 0s';
+
       if (diffMs === 0 && !avisado) {
         tr.classList.add('parpadea');
         hayParpadeo = true;
@@ -73,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tr.classList.remove('parpadea');
       }
     });
+
     // Controlar visibilidad y animación de la imagen
     if (formImage) {
       if (hayParpadeo) {
@@ -85,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formImage.style.pointerEvents = 'none';
       }
     }
+
     // Sincronizar estado para otras pestañas/páginas
     localStorage.setItem('foca_loca_parpadeo', hayParpadeo ? 'true' : 'false');
   }
@@ -108,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const datos = localStorage.getItem('foca_loca_datos');
     if (!datos) return;
     const filas = JSON.parse(datos);
+
     filas.forEach(fila => {
       const tr = document.createElement('tr');
       tr.innerHTML = `
@@ -131,12 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
           tr.classList.remove('parpadea');
           guardarDatosLocalStorage();
           actualizarRestantes();
+        } else {
+          guardarDatosLocalStorage();
+          actualizarRestantes();
         }
       });
       tdAvisado.appendChild(checkbox);
       tr.appendChild(tdAvisado);
       tablaBody.appendChild(tr);
     });
+
     actualizarRestantes();
   }
 
@@ -167,16 +181,19 @@ document.addEventListener('DOMContentLoaded', () => {
       alert("Por favor, complete los campos obligatorios: ID y Nombre.");
       return;
     }
+
     const color = colorInput.value.trim();
     const telefono = telefonoInput.value.trim();
     const horaentrada = horaEntradaInput.value;
     const tiempoJuego = tiempoJuegoInput.value.trim();
     const horasalida = horaSalidaInput.value;
     const abonado = abonadoInput.value.trim();
+
     if (tiempoJuego && (isNaN(tiempoJuego) || Number(tiempoJuego) < 0)) {
       alert("El tiempo de juego debe ser un número positivo.");
       return;
     }
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${id}</td>
@@ -196,13 +213,14 @@ document.addEventListener('DOMContentLoaded', () => {
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
         tr.classList.remove("parpadea");
-        guardarDatosLocalStorage();
-        actualizarRestantes();
       }
+      guardarDatosLocalStorage();
+      actualizarRestantes();
     });
     tdAvisado.appendChild(checkbox);
     tr.appendChild(tdAvisado);
     tablaBody.appendChild(tr);
+
     setHoraActual();
     tiempoJuegoInput.value = '';
     horaSalidaInput.value = '';
@@ -229,9 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fechaTd.style.textAlign = "center";
     fechaTr.appendChild(fechaTd);
     thead.parentNode.insertBefore(fechaTr, thead);
+
     const html = encodeURIComponent(table.outerHTML);
-    const url 
-      = "data:application/vnd.ms-excel;charset=utf-8," + html;
+    const url = "data:application/vnd.ms-excel;charset=utf-8," + html;
     const a = document.createElement("a");
     a.href = url;
     a.download = "foca_loca_registros.xls";
@@ -241,37 +259,36 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   exportPdfBtn?.addEventListener("click", () => {
-    if(!window.jspdf) {
+    if (!window.jspdf) {
       alert("jsPDF no cargado, incluye jsPDF y jsPDF-autoTable para exportar PDF.");
       return;
     }
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF({orientation: "landscape"});
+    const doc = new jsPDF({ orientation: "landscape" });
     const margin = 15;
     const ahora = new Date();
     const fechaStr = ahora.toLocaleDateString();
     doc.text("Listado de Registros - La Foca Loca", margin, margin);
-    doc.text(`Fecha: ${fechaStr}`, margin, margin+8);
+    doc.text(`Fecha: ${fechaStr}`, margin, margin + 8);
     doc.autoTable({
       html: "#tabla",
       startY: margin + 20,
-      margin: {left: margin,right: margin,top: margin,bottom: margin},
-      styles: {fontSize:10,overflow:"linebreak",lineWidth:0.3,lineColor:[0,0,0]},
-      headStyles: {fillColor:[230,230,250],textColor:[0,0,0],lineWidth:0.7,lineColor:[0,0,0],fontStyle:"bold"},
-      bodyStyles: {fillColor:[255,255,255],lineWidth:0.3,lineColor:[0,0,0]},
-      alternateRowStyles: {fillColor:[245,245,245]},
-      pageBreak:"auto"
+      margin: { left: margin, right: margin, top: margin, bottom: margin },
+      styles: { fontSize: 10, overflow: "linebreak", lineWidth: 0.3, lineColor: [0, 0, 0] },
+      headStyles: { fillColor: [230, 230, 250], textColor: [0, 0, 0], lineWidth: 0.7, lineColor: [0, 0, 0], fontStyle: "bold" },
+      bodyStyles: { fillColor: [255, 255, 255], lineWidth: 0.3, lineColor: [0, 0, 0] },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
+      pageBreak: "auto"
     });
     doc.save("foca_loca_registros.pdf");
   });
 
   resetBtn?.addEventListener("click", () => {
-    if(confirm("¿Seguro quieres eliminar todos los registros?")) {
+    if (confirm("¿Seguro quieres eliminar todos los registros?")) {
       tablaBody.innerHTML = "";
       localStorage.removeItem("foca_loca_datos");
-      formImage.classList.remove("parpadea-imagen");
-      formImage.style.opacity = "0";
-      formImage.style.pointerEvents = "none";
+      localStorage.setItem("foca_loca_parpadeo", "false"); // CAMBIO: solo resetea estado, sin tocar imagen aquí
+      actualizarRestantes(); // CAMBIO: deja que actualizarRestantes decida imagen
     }
   });
 
@@ -280,10 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Sincronizar parpadeo entre pestañas/páginas
   window.addEventListener("storage", (event) => {
-    if(event.key === "foca_loca_parpadeo") {
+    if (event.key === "foca_loca_parpadeo") {
       const activo = event.newValue === "true";
-      if(formImage) {
-        if(activo) {
+      if (formImage) {
+        if (activo) {
           formImage.classList.add("parpadea-imagen");
           formImage.style.opacity = "1";
           formImage.style.pointerEvents = "auto";
@@ -297,18 +314,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Inicializar estado parpadeo al cargar página
-  window.addEventListener("DOMContentLoaded", () => {
-    const estadoAlCargar = localStorage.getItem("foca_loca_parpadeo") === "true";
-    if(formImage) {
-      if(estadoAlCargar) {
-        formImage.classList.add("parpadea-imagen");
-        formImage.style.opacity = "1";
-        formImage.style.pointerEvents = "auto";
-      } else {
-        formImage.classList.remove("parpadea-imagen");
-        formImage.style.opacity = "0";
-        formImage.style.pointerEvents = "none";
-      }
+  const estadoAlCargar = localStorage.getItem("foca_loca_parpadeo") === "true"; // CAMBIO: solo lee
+  if (formImage) {
+    if (estadoAlCargar) {
+      formImage.classList.add("parpadea-imagen");
+      formImage.style.opacity = "1";
+      formImage.style.pointerEvents = "auto";
+    } else {
+      formImage.classList.remove("parpadea-imagen");
+      formImage.style.opacity = "0";
+      formImage.style.pointerEvents = "none";
     }
-  });
+  }
 });
